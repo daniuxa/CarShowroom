@@ -195,20 +195,78 @@ namespace WinFormsAppProj
 
         private void SearcButtn_Click(object sender, EventArgs e)
         {
-            int YearFrom = 0;
-            int YearTo = 0;
-            try
+            /*Controls.Clear();*/
+            int YearFrom = 1;
+            int YearTo = 1;
+            if (FromYear.Text == "" && ToYear.Text == "")
             {
-                YearFrom = Int32.Parse(FromYear.Text);
-                YearTo = Int32.Parse(ToYear.Text);
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Неправильно введено рік");
-                return;
-            }
 
-            if (BrandAuto.Text == "" || ModelAuto.Text == "" || TypeAuto.Text == "") 
+            }
+            else if (FromYear.Text != "" && ToYear.Text == "")
+            {
+                try
+                {
+                    YearFrom = Int32.Parse(FromYear.Text);
+                    //YearTo = Int32.Parse(ToYear.Text);
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Неправильно введено рік");
+                    return;
+                }
+            }
+            else if (FromYear.Text == "" && ToYear.Text != "")
+            {
+                try
+                {
+                    YearTo = Int32.Parse(ToYear.Text);
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Неправильно введено рік");
+                    return;
+                }
+            }
+            else if (FromYear.Text != "" && ToYear.Text != "")
+            {
+                try
+                {
+                    YearFrom = Int32.Parse(FromYear.Text);
+                    YearTo = Int32.Parse(ToYear.Text);
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Неправильно введено рік");
+                    return;
+                }
+            }
+            if (FromYear.Text != "" && ToYear.Text != "")
+            {
+                if (YearFrom < 1900 || YearTo < 1900)
+                {
+                    MessageBox.Show("Рік виробництва не може бути меншим ніж 1900 рік");
+                    return;
+                }
+            }
+            else if (FromYear.Text == "" && ToYear.Text != "")
+            {
+                if (YearTo < 1900)
+                {
+                    MessageBox.Show("Рік виробництва не може бути меншим ніж 1900 рік");
+                    return;
+                }
+            }
+            else if (FromYear.Text != "" && ToYear.Text == "")
+            {
+                if (YearFrom < 1900)
+                {
+                    MessageBox.Show("Рік виробництва не може бути меншим ніж 1900 рік");
+                    return;
+                }
+            }
+        
+
+            if (BrandAuto.Text == "" /*|| ModelAuto.Text == ""*/ || TypeAuto.Text == "") 
             {
                 MessageBox.Show("Перевірте введені вами значення");
             }
@@ -218,7 +276,7 @@ namespace WinFormsAppProj
             }
             else
             {
-                MessageBox.Show($"Введені вами значення:\n{TypeAuto.Text}\n{BrandAuto.Text}\n{ModelAuto.Text}\nРік\tВід:{YearFrom} До:{YearTo}");
+                
 
                 if (TypeAuto.Text == "Легковий автомобіль")
                 {
@@ -229,6 +287,7 @@ namespace WinFormsAppProj
                     catch(YearProdException ex)
                     {
                         MessageBox.Show($"{ex.Message}\tЗначення: {ex.Year}");
+                        return;
                     }
                     try
                     {
@@ -237,6 +296,7 @@ namespace WinFormsAppProj
                     catch (YearProdException ex)
                     {
                         MessageBox.Show($"{ex.Message}\tЗначення: {ex.Year}");
+                        return;
                     }
                    
                 }
@@ -249,6 +309,7 @@ namespace WinFormsAppProj
                     catch(YearProdException ex)
                     {
                         MessageBox.Show($"{ex.Message}\tЗначення: {ex.Year}");
+                        return;
                     }
                     try
                     {
@@ -257,8 +318,10 @@ namespace WinFormsAppProj
                     catch(YearProdException ex)
                     {
                         MessageBox.Show($"{ex.Message}\tЗначення: {ex.Year}");
+                        return;
                     }
                 }
+                MessageBox.Show($"Введені вами значення:\n{TypeAuto.Text}\n{BrandAuto.Text}\n{ModelAuto.Text}\nРік\tВід:{YearFrom} До:{YearTo}");
             }
         }
 

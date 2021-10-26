@@ -55,6 +55,7 @@ namespace WinFormsAppProj
             // 
             // TypeAuto
             // 
+            this.TypeAuto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TypeAuto.FormattingEnabled = true;
             this.TypeAuto.Items.AddRange(new object[] {
             "Легковий автомобіль",
@@ -78,6 +79,7 @@ namespace WinFormsAppProj
             // 
             // BrandAuto
             // 
+            this.BrandAuto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.BrandAuto.FormattingEnabled = true;
             this.BrandAuto.Items.AddRange(new object[] {
             "Виберіть тип"});
@@ -99,6 +101,7 @@ namespace WinFormsAppProj
             // 
             // ModelAuto
             // 
+            this.ModelAuto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ModelAuto.FormattingEnabled = true;
             this.ModelAuto.Items.AddRange(new object[] {
             "Визначте тип і бренд"});
@@ -186,6 +189,7 @@ namespace WinFormsAppProj
             this.Controls.Add(this.label2);
             this.Controls.Add(this.TypeAuto);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ClientForm";
             this.Text = "ClientForm";
             this.ResumeLayout(false);

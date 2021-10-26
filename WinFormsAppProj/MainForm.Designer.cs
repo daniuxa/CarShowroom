@@ -92,6 +92,7 @@ namespace WinFormsAppProj
             this.Controls.Add(this.label2);
             this.Controls.Add(this.ClientButtn);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);

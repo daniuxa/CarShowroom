@@ -36,14 +36,20 @@ namespace WinFormsAppProj
         }
         private void PasswordBox_KeyUp(object sender, KeyEventArgs e)
         {
-            /*if (e.KeyValue == 13)
+            if (e.KeyValue == 13)
             {
                 OkButtn_Click(sender, e);
-            } */
+            }
             if (e.KeyCode == Keys.Enter)
             {
                 OkButtn_Click(sender, e);
             }
+        }
+
+        private void PasswordBox_Enter(object sender, EventArgs e)
+        {
+            //OkButtn_Click(sender, e);
+          
         }
     }
 }

@@ -37,6 +37,7 @@ namespace WinFormsAppProj
         {
             PasswordForm NewForm = new PasswordForm();
             NewForm.ShowDialog();
+            //Controls.Clear();
         }
     }
 }

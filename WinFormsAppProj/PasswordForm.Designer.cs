@@ -46,6 +46,7 @@ namespace WinFormsAppProj
             // 
             // PasswordBox
             // 
+            this.PasswordBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PasswordBox.Location = new System.Drawing.Point(188, 57);
             this.PasswordBox.Name = "PasswordBox";
             this.PasswordBox.Size = new System.Drawing.Size(125, 22);
@@ -68,7 +69,7 @@ namespace WinFormsAppProj
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(459, 174);
+            this.ClientSize = new System.Drawing.Size(464, 162);
             this.Controls.Add(this.OkButtn);
             this.Controls.Add(this.PasswordBox);
             this.Controls.Add(this.label1);
