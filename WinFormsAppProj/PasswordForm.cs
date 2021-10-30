@@ -51,5 +51,36 @@ namespace WinFormsAppProj
             //OkButtn_Click(sender, e);
           
         }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void PasswordForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+   
+        private void PasswordForm_MouseUp(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        Point LastPoint;
+        private void PasswordForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            LastPoint = new Point(e.X, e.Y);
+        }
+
+        private void PasswordForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Left += e.X - LastPoint.X;
+                Top += e.Y - LastPoint.Y;
+            }
+        }
     }
 }

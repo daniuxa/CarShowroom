@@ -108,5 +108,8 @@
   <ItemGroup>
     <None Include="Resources\логотип-автосалона-спорт-автоматического-магазина-на-белизне-151783950.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\depositphotos_19167731-stock-illustration-mavi-otomobil-logosu.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

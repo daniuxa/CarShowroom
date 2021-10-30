@@ -39,5 +39,26 @@ namespace WinFormsAppProj
             NewForm.ShowDialog();
             //Controls.Clear();
         }
+
+     
+        private void CloseButtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        Point LastPoint;
+        private void MainForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Left += e.X - LastPoint.X;
+                Top += e.Y - LastPoint.Y;
+            }
+        }
+
+        private void MainForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            LastPoint = new Point(e.X, e.Y);
+        }
     }
 }

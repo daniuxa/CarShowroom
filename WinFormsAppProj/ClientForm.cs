@@ -339,5 +339,25 @@ namespace WinFormsAppProj
         {
 
         }
+
+        private void CloseButtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        Point LastPoint;
+        private void ClientForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Left += e.X - LastPoint.X;
+                Top += e.Y - LastPoint.Y;
+            }
+        }
+
+        private void ClientForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            LastPoint = new Point(e.X, e.Y);
+        }
     }
 }

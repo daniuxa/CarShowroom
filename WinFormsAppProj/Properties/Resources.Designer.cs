@@ -63,6 +63,16 @@ namespace WinFormsAppProj.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap depositphotos_19167731_stock_illustration_mavi_otomobil_logosu {
+            get {
+                object obj = ResourceManager.GetObject("depositphotos_19167731-stock-illustration-mavi-otomobil-logosu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap логотип_автосалона_спорт_автоматического_магазина_на_белизне_151783950 {
             get {
                 object obj = ResourceManager.GetObject("логотип-автосалона-спорт-автоматического-магазина-на-белизне-151783950", resourceCulture);

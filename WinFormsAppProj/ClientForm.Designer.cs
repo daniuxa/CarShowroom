@@ -41,6 +41,7 @@ namespace WinFormsAppProj
             this.FromYear = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.ToYear = new System.Windows.Forms.TextBox();
+            this.CloseButtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -169,6 +170,23 @@ namespace WinFormsAppProj
             this.ToYear.TabIndex = 13;
             this.ToYear.TextChanged += new System.EventHandler(this.ToYear_TextChanged);
             // 
+            // CloseButtn
+            // 
+            this.CloseButtn.BackColor = System.Drawing.Color.Red;
+            this.CloseButtn.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.CloseButtn.FlatAppearance.BorderSize = 0;
+            this.CloseButtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Maroon;
+            this.CloseButtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CloseButtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseButtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.CloseButtn.Location = new System.Drawing.Point(592, 3);
+            this.CloseButtn.Name = "CloseButtn";
+            this.CloseButtn.Size = new System.Drawing.Size(25, 25);
+            this.CloseButtn.TabIndex = 14;
+            this.CloseButtn.Text = "X";
+            this.CloseButtn.UseVisualStyleBackColor = false;
+            this.CloseButtn.Click += new System.EventHandler(this.CloseButtn_Click);
+            // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -177,6 +195,7 @@ namespace WinFormsAppProj
             this.BackgroundImage = global::WinFormsAppProj.Properties.Resources.логотип_автосалона_спорт_автоматического_магазина_на_белизне_151783950;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(620, 486);
+            this.Controls.Add(this.CloseButtn);
             this.Controls.Add(this.ToYear);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.FromYear);
@@ -189,9 +208,11 @@ namespace WinFormsAppProj
             this.Controls.Add(this.label2);
             this.Controls.Add(this.TypeAuto);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ClientForm";
             this.Text = "ClientForm";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ClientForm_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ClientForm_MouseMove);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,6 +231,7 @@ namespace WinFormsAppProj
         private System.Windows.Forms.TextBox FromYear;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox ToYear;
+        private System.Windows.Forms.Button CloseButtn;
     }
 }
 
