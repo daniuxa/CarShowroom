@@ -46,8 +46,13 @@ namespace WinFormsAppProj
             Application.Exit();
         }
 
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         Point LastPoint;
-        private void MainForm_MouseMove(object sender, MouseEventArgs e)
+        private void panel2_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -56,7 +61,7 @@ namespace WinFormsAppProj
             }
         }
 
-        private void MainForm_MouseDown(object sender, MouseEventArgs e)
+        private void panel2_MouseDown(object sender, MouseEventArgs e)
         {
             LastPoint = new Point(e.X, e.Y);
         }

@@ -36,10 +36,10 @@ namespace WinFormsAppProj
         }
         private void PasswordBox_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13)
+           /* if (e.KeyValue == 13)
             {
                 OkButtn_Click(sender, e);
-            }
+            }*/
             if (e.KeyCode == Keys.Enter)
             {
                 OkButtn_Click(sender, e);
@@ -63,24 +63,20 @@ namespace WinFormsAppProj
         }
 
    
-        private void PasswordForm_MouseUp(object sender, MouseEventArgs e)
-        {
-            
-        }
 
         Point LastPoint;
-        private void PasswordForm_MouseDown(object sender, MouseEventArgs e)
-        {
-            LastPoint = new Point(e.X, e.Y);
-        }
-
-        private void PasswordForm_MouseMove(object sender, MouseEventArgs e)
+        private void TopBorder_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 Left += e.X - LastPoint.X;
                 Top += e.Y - LastPoint.Y;
             }
+        }
+
+        private void TopBorder_MouseDown(object sender, MouseEventArgs e)
+        {
+            LastPoint = new Point(e.X, e.Y);
         }
     }
 }

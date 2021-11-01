@@ -35,17 +35,18 @@ namespace WinFormsAppProj
             this.AdminLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.CloseButtn = new System.Windows.Forms.Button();
+            this.TopBorder = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.TopBorder.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Modern No. 20", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Location = new System.Drawing.Point(0, -19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(703, 100);
+            this.label1.Size = new System.Drawing.Size(719, 130);
             this.label1.TabIndex = 0;
             this.label1.Text = "Вас вітає автосалон \"AutoTrading\"";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -64,9 +65,8 @@ namespace WinFormsAppProj
             // 
             // label2
             // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label2.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(0, 74);
+            this.label2.Location = new System.Drawing.Point(-3, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(703, 26);
             this.label2.TabIndex = 4;
@@ -90,13 +90,11 @@ namespace WinFormsAppProj
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.CloseButtn);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(-13, 44);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(703, 100);
+            this.panel1.Size = new System.Drawing.Size(719, 100);
             this.panel1.TabIndex = 6;
             // 
             // CloseButtn
@@ -116,6 +114,19 @@ namespace WinFormsAppProj
             this.CloseButtn.UseVisualStyleBackColor = false;
             this.CloseButtn.Click += new System.EventHandler(this.CloseButtn_Click);
             // 
+            // TopBorder
+            // 
+            this.TopBorder.BackColor = System.Drawing.Color.Silver;
+            this.TopBorder.Controls.Add(this.CloseButtn);
+            this.TopBorder.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopBorder.Location = new System.Drawing.Point(0, 0);
+            this.TopBorder.Name = "TopBorder";
+            this.TopBorder.Size = new System.Drawing.Size(703, 28);
+            this.TopBorder.TabIndex = 7;
+            this.TopBorder.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            this.TopBorder.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDown);
+            this.TopBorder.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseMove);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -123,16 +134,17 @@ namespace WinFormsAppProj
             this.BackgroundImage = global::WinFormsAppProj.Properties.Resources.depositphotos_19167731_stock_illustration_mavi_otomobil_logosu;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(703, 460);
+            this.Controls.Add(this.TopBorder);
             this.Controls.Add(this.AdminLabel);
             this.Controls.Add(this.ClientButtn);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
             this.panel1.ResumeLayout(false);
+            this.TopBorder.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,5 +158,6 @@ namespace WinFormsAppProj
         private System.Windows.Forms.Label AdminLabel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button CloseButtn;
+        private System.Windows.Forms.Panel TopBorder;
     }
 }

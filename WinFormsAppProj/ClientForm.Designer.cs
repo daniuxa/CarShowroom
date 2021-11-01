@@ -42,12 +42,15 @@ namespace WinFormsAppProj
             this.label6 = new System.Windows.Forms.Label();
             this.ToYear = new System.Windows.Forms.TextBox();
             this.CloseButtn = new System.Windows.Forms.Button();
+            this.TopBorder = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.TopBorder.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 32);
+            this.label1.Location = new System.Drawing.Point(12, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(218, 24);
             this.label1.TabIndex = 2;
@@ -61,7 +64,7 @@ namespace WinFormsAppProj
             this.TypeAuto.Items.AddRange(new object[] {
             "Легковий автомобіль",
             "Вантажівка"});
-            this.TypeAuto.Location = new System.Drawing.Point(246, 32);
+            this.TypeAuto.Location = new System.Drawing.Point(246, 50);
             this.TypeAuto.Name = "TypeAuto";
             this.TypeAuto.Size = new System.Drawing.Size(226, 24);
             this.TypeAuto.TabIndex = 3;
@@ -71,7 +74,7 @@ namespace WinFormsAppProj
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(12, 77);
+            this.label2.Location = new System.Drawing.Point(12, 93);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(203, 25);
             this.label2.TabIndex = 4;
@@ -84,7 +87,7 @@ namespace WinFormsAppProj
             this.BrandAuto.FormattingEnabled = true;
             this.BrandAuto.Items.AddRange(new object[] {
             "Виберіть тип"});
-            this.BrandAuto.Location = new System.Drawing.Point(246, 81);
+            this.BrandAuto.Location = new System.Drawing.Point(246, 93);
             this.BrandAuto.Name = "BrandAuto";
             this.BrandAuto.Size = new System.Drawing.Size(226, 24);
             this.BrandAuto.TabIndex = 5;
@@ -94,7 +97,7 @@ namespace WinFormsAppProj
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(12, 122);
+            this.label3.Location = new System.Drawing.Point(12, 136);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(220, 25);
             this.label3.TabIndex = 6;
@@ -106,7 +109,7 @@ namespace WinFormsAppProj
             this.ModelAuto.FormattingEnabled = true;
             this.ModelAuto.Items.AddRange(new object[] {
             "Визначте тип і бренд"});
-            this.ModelAuto.Location = new System.Drawing.Point(246, 126);
+            this.ModelAuto.Location = new System.Drawing.Point(246, 136);
             this.ModelAuto.Name = "ModelAuto";
             this.ModelAuto.Size = new System.Drawing.Size(226, 24);
             this.ModelAuto.TabIndex = 7;
@@ -127,7 +130,7 @@ namespace WinFormsAppProj
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(12, 175);
+            this.label4.Location = new System.Drawing.Point(12, 187);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(113, 25);
             this.label4.TabIndex = 9;
@@ -138,7 +141,7 @@ namespace WinFormsAppProj
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(158, 175);
+            this.label5.Location = new System.Drawing.Point(158, 187);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 25);
             this.label5.TabIndex = 10;
@@ -146,7 +149,7 @@ namespace WinFormsAppProj
             // 
             // FromYear
             // 
-            this.FromYear.Location = new System.Drawing.Point(210, 175);
+            this.FromYear.Location = new System.Drawing.Point(210, 187);
             this.FromYear.Name = "FromYear";
             this.FromYear.Size = new System.Drawing.Size(100, 22);
             this.FromYear.TabIndex = 11;
@@ -156,7 +159,7 @@ namespace WinFormsAppProj
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(339, 175);
+            this.label6.Location = new System.Drawing.Point(339, 187);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 25);
             this.label6.TabIndex = 12;
@@ -164,7 +167,7 @@ namespace WinFormsAppProj
             // 
             // ToYear
             // 
-            this.ToYear.Location = new System.Drawing.Point(391, 178);
+            this.ToYear.Location = new System.Drawing.Point(391, 187);
             this.ToYear.Name = "ToYear";
             this.ToYear.Size = new System.Drawing.Size(100, 22);
             this.ToYear.TabIndex = 13;
@@ -187,6 +190,34 @@ namespace WinFormsAppProj
             this.CloseButtn.UseVisualStyleBackColor = false;
             this.CloseButtn.Click += new System.EventHandler(this.CloseButtn_Click);
             // 
+            // TopBorder
+            // 
+            this.TopBorder.BackColor = System.Drawing.Color.Silver;
+            this.TopBorder.Controls.Add(this.button1);
+            this.TopBorder.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopBorder.Location = new System.Drawing.Point(0, 0);
+            this.TopBorder.Name = "TopBorder";
+            this.TopBorder.Size = new System.Drawing.Size(620, 28);
+            this.TopBorder.TabIndex = 15;
+            this.TopBorder.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopBorder_MouseDown);
+            this.TopBorder.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopBorder_MouseMove);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Maroon;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Location = new System.Drawing.Point(675, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(25, 25);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "X";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -208,11 +239,12 @@ namespace WinFormsAppProj
             this.Controls.Add(this.label2);
             this.Controls.Add(this.TypeAuto);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.TopBorder);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ClientForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ClientForm";
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ClientForm_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ClientForm_MouseMove);
+            this.TopBorder.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,6 +264,8 @@ namespace WinFormsAppProj
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox ToYear;
         private System.Windows.Forms.Button CloseButtn;
+        private System.Windows.Forms.Panel TopBorder;
+        private System.Windows.Forms.Button button1;
     }
 }
 

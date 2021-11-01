@@ -345,8 +345,9 @@ namespace WinFormsAppProj
             this.Close();
         }
 
+
         Point LastPoint;
-        private void ClientForm_MouseMove(object sender, MouseEventArgs e)
+        private void TopBorder_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -355,7 +356,7 @@ namespace WinFormsAppProj
             }
         }
 
-        private void ClientForm_MouseDown(object sender, MouseEventArgs e)
+        private void TopBorder_MouseDown(object sender, MouseEventArgs e)
         {
             LastPoint = new Point(e.X, e.Y);
         }

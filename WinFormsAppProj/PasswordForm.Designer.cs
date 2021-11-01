@@ -33,6 +33,9 @@ namespace WinFormsAppProj
             this.PasswordBox = new System.Windows.Forms.TextBox();
             this.OkButtn = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
+            this.TopBorder = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.TopBorder.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -75,7 +78,7 @@ namespace WinFormsAppProj
             this.CloseButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloseButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.CloseButton.Location = new System.Drawing.Point(438, -3);
+            this.CloseButton.Location = new System.Drawing.Point(439, 0);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(25, 25);
             this.CloseButton.TabIndex = 8;
@@ -83,22 +86,50 @@ namespace WinFormsAppProj
             this.CloseButton.UseVisualStyleBackColor = false;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
+            // TopBorder
+            // 
+            this.TopBorder.BackColor = System.Drawing.Color.Silver;
+            this.TopBorder.Controls.Add(this.CloseButton);
+            this.TopBorder.Controls.Add(this.button1);
+            this.TopBorder.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopBorder.Location = new System.Drawing.Point(0, 0);
+            this.TopBorder.Name = "TopBorder";
+            this.TopBorder.Size = new System.Drawing.Size(464, 28);
+            this.TopBorder.TabIndex = 16;
+            this.TopBorder.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopBorder_MouseDown);
+            this.TopBorder.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopBorder_MouseMove);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Maroon;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Location = new System.Drawing.Point(675, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(25, 25);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "X";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // PasswordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 162);
-            this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.OkButtn);
             this.Controls.Add(this.PasswordBox);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.TopBorder);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PasswordForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Password";
             this.Load += new System.EventHandler(this.PasswordForm_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PasswordForm_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PasswordForm_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PasswordForm_MouseUp);
+            this.TopBorder.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,5 +141,7 @@ namespace WinFormsAppProj
         private System.Windows.Forms.TextBox PasswordBox;
         private System.Windows.Forms.Button OkButtn;
         private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.Panel TopBorder;
+        private System.Windows.Forms.Button button1;
     }
 }
