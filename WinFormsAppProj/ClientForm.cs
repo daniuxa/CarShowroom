@@ -266,18 +266,16 @@ namespace WinFormsAppProj
             }
         
 
-            if (BrandAuto.Text == "" /*|| ModelAuto.Text == ""*/ || TypeAuto.Text == "") 
+            if (/*BrandAuto.Text == ""*/ /*|| ModelAuto.Text == ""*/ /*||*/ TypeAuto.Text == "") 
             {
                 MessageBox.Show("Перевірте введені вами значення");
             }
-            else if (YearFrom > YearTo)
+            else if (YearFrom > YearTo && FromYear.Text != "" && ToYear.Text != "")
             {
                 MessageBox.Show("Перевірте введений вами рік");
             }
             else
             {
-                
-
                 if (TypeAuto.Text == "Легковий автомобіль")
                 {
                     try
@@ -286,7 +284,7 @@ namespace WinFormsAppProj
                     }
                     catch(YearProdException ex)
                     {
-                        MessageBox.Show($"{ex.Message}\tЗначення: {ex.Year}");
+                        MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
                         return;
                     }
                     try
@@ -295,7 +293,7 @@ namespace WinFormsAppProj
                     }
                     catch (YearProdException ex)
                     {
-                        MessageBox.Show($"{ex.Message}\tЗначення: {ex.Year}");
+                        MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
                         return;
                     }
                    
@@ -308,7 +306,7 @@ namespace WinFormsAppProj
                     }
                     catch(YearProdException ex)
                     {
-                        MessageBox.Show($"{ex.Message}\tЗначення: {ex.Year}");
+                        MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
                         return;
                     }
                     try
@@ -317,7 +315,7 @@ namespace WinFormsAppProj
                     }
                     catch(YearProdException ex)
                     {
-                        MessageBox.Show($"{ex.Message}\tЗначення: {ex.Year}");
+                        MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
                         return;
                     }
                 }

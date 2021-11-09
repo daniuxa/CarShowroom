@@ -6,41 +6,60 @@ using System.Threading.Tasks;
 
 namespace WinFormsAppProj
 {
+    [Serializable]
     abstract class Person
     {
-        public string _Name { get; set; }        //Ім'я
-        public string _Surname { get; set; }     //Прізвище
-        protected DateTime _birthday;            //Дата народження
-        public DateTime _Birthday
+        public string Name { get; set; }        //Ім'я
+        public string Surname { get; set; }     //Прізвище
+        protected DateTime birthday;            //Дата народження
+        public DateTime Birthday
         {
             get
             {
-                return _birthday;
+                return birthday;
             }
             set
             {
-                if (value < DateTime.Now.AddYears(-18))
-                    _birthday = value;
+                if (value > DateTime.Now.AddYears(-18))
+                    throw new TooYoungException("Покупець занадто молодий", value);
+                else if (value < new DateTime(1900, 1, 1))
+                    throw new TooOldException("Покупець занадто старий", value);
+                else
+                  birthday = value;              
             }
         }
-        public string _Sex { get; set; }        //Стать
+        private string sex;
+        public string Sex
+        {
+            get
+            {
+                return sex;
+            }
+            set
+            {
+                if (value == "Чоловік" || value == "Жінка")
+                {
+                    sex = value;
+                }
+                else
+                    throw new SexException("Невірно заданий гендер", value);
+            }
+        }        
+        
 
-        protected Person()
+        /*protected Person()
         {
             _Name = "Невизначено";
             _Surname = "Невизначено";
             _Birthday = new DateTime();
             _Sex = "Невизначено";
-        }
+        }*/
         protected Person(string name, string surname, DateTime Birthday, string sex)
         {
-            _Name = name;
-            _Surname = surname;
-            if (Birthday < DateTime.Now.AddYears(-18))
-                _birthday = Birthday;
-            else
-                _birthday = new DateTime();
-            _Sex = sex;
+            Name = name;
+            Surname = surname;
+            this.Birthday = Birthday;
+            Sex = sex;
         }
 
         /*//Гетер/сетер для имени

@@ -8,53 +8,53 @@ namespace WinFormsAppProj
 {
     abstract class Car
     {
-        public string _brand { get; set; }              //Бренд автомобіля
-        public string _model { get; set; }              //Модель автомобіля
-        protected int _productionYear;             //Рік виробництва
-        public int _ProductionYear
+        public string brand { get; set; }              //Бренд автомобіля
+        public string model { get; set; }              //Модель автомобіля
+        protected int productionYear;             //Рік виробництва
+        public int ProductionYear
         {
             get
             {
-                return _productionYear;
+                return productionYear;
             }
             set
             {
                 if (value <= DateTime.Now.Year && value > 0)
-                    _productionYear = value;
+                    productionYear = value;
                 else if (value > DateTime.Now.Year)
                     throw new YearProdException("Рік виробництва задається у майбутньому", value);
                 else if (value <= 0)
                     throw new YearProdException("Рік виробництва менший або дорівнює нулю", value);
             }
         }
-        protected int _price;                           //Ціна автомобіля
-        public int _Price
+        protected int price;                           //Ціна автомобіля
+        public int Price
         {
             get
             {
-                return _price;
+                return price;
             }
             set
             {
                 if (value > 0)
-                    _price = value;
+                    price = value;
                 else
                 {
                     throw new PriceException("Ціна дорівнює або менше нуля", value);
                 }
             }
         }
-        protected int _power;                           //Потужність автомобіля
-        public int _Power
+        protected int power;                           //Потужність автомобіля
+        public int Power
         {
             get
             {
-                return _power;
+                return power;
             }
             set
             {
                 if (value > 0)
-                    _power = value;
+                    power = value;
                 else
                 {
                     throw new PowerException("Потужність менша або дорівнює нулю", value);
@@ -71,17 +71,17 @@ namespace WinFormsAppProj
         }*/
         protected Car(string brand, int ProductionYear, int price, int power, string model)
         {
-            _brand = brand;
-            _ProductionYear = ProductionYear;
-            _Price = price;
-            _Power = power;
-            _model = model;
+            this.brand = brand;
+            this.ProductionYear = ProductionYear;
+            Price = price;
+            Power = power;
+            this.model = model;
         }
         protected Car(string brand, int ProductionYear, string model)
         {
-            _brand = brand;
-            _ProductionYear = ProductionYear;
-            _model = model;
+            this.brand = brand;
+            this.ProductionYear = ProductionYear;
+            this.model = model;
         }
         /*//Гетер/сетер бренду
         public string GetBrand()

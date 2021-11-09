@@ -8,32 +8,62 @@ namespace WinFormsAppProj
 {
     class Сustomer : Person
     {
-        public string _PhoneNumber { get; set; } //Номер телефона покупця
-        private DateTime _visitDate;             //Дата візиту автосалону
-        public DateTime _VisitDate
+        private string phoneNumber;
+        public string PhoneNumber
         {
             get
             {
-                return _VisitDate;
+                return phoneNumber;
+            }
+            set
+            {
+                if (value.Length == 10)
+                {
+                    phoneNumber = value;
+                }
+                else
+                {
+                    throw new PhoneNumberException("Неправильний формат номера телефона",value);
+                }
+            }
+        }
+        private DateTime visitDate;             //Дата візиту автосалону
+        public DateTime VisitDate
+        {
+            get
+            {
+                return VisitDate;
             }
             set
             {
                 if (value > DateTime.Now)
-                    _VisitDate = value;
+                    VisitDate = value;
+                else if (value.Year > DateTime.Now.Year + 1)
+                    throw new VisitDayException("Дата візиту задана в далекому майбутньному", value);
+                else
+                    throw new VisitDayException("Дата візиту задана в минулому", value);
             }
         }
-        public Сustomer() : base()
+        public LightCar ViewLightCar { get; set; }
+        public Truck ViewTruck { get; set; }
+        /*public Сustomer() : base()
         {
             _PhoneNumber = "Невизначено";
             _visitDate = new DateTime();
-        }
-        public Сustomer(string name, string surname, DateTime Birthday, string sex, string PhoneNumber, DateTime VisitDate) : base(name, surname, Birthday, sex)
+        }*/
+        public Сustomer(string name, string surname, DateTime Birthday, string sex, string PhoneNumber, DateTime VisitDate, LightCar ViewLightCar) : base(name, surname, Birthday, sex)
         {
-            _PhoneNumber = PhoneNumber;
-            if (VisitDate > DateTime.Now)
-                _visitDate = VisitDate;
-            else
-                _visitDate = new DateTime();
+            this.PhoneNumber = PhoneNumber;
+            this.VisitDate = VisitDate;
+            this.VisitDate = new DateTime();
+            this.ViewLightCar = ViewLightCar;
+        }
+        public Сustomer(string name, string surname, DateTime Birthday, string sex, string PhoneNumber, DateTime VisitDate, Truck ViewTruck) : base(name, surname, Birthday, sex)
+        {
+            this.PhoneNumber = PhoneNumber;
+            this.VisitDate = VisitDate;
+            this.VisitDate = new DateTime();
+            this.ViewLightCar = ViewLightCar;
         }
 
         /*//Гетер/сетер номеру телефона

@@ -8,18 +8,18 @@ namespace WinFormsAppProj
 {
     class LightCar : Car
     {
-        public string _BodyType { get; set; } //Тип кузова автомобіля
-        private int _topSpeed;                //Максимальна швидкість автомобіля
-        public int _TopSpeed
+        public string BodyType { get; set; } //Тип кузова автомобіля
+        private int topSpeed;                //Максимальна швидкість автомобіля
+        public int TopSpeed
         {
             get
             {
-                return _topSpeed;
+                return topSpeed;
             }
             set
             {
                 if (value > 0)
-                    _topSpeed = value;
+                    topSpeed = value;
                 else
                 {
                     throw new TopSpeedException("Максимальна швидкість менша або дорівнює нулю", value);
@@ -34,8 +34,8 @@ namespace WinFormsAppProj
         }*/
         public LightCar(string brand, string model, int ProductionYear, int price, int power, string BodyType, int TopSpeed) : base(brand, ProductionYear, price, power, model)
         {
-            _BodyType = BodyType;
-            _TopSpeed = TopSpeed;
+            this.BodyType = BodyType;
+            this.TopSpeed = TopSpeed;
         }
         public LightCar(string brand, string model, int ProductionYear) : base(brand, ProductionYear, model)
         {

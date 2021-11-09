@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForm.Designer.cs">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Car.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="ClientForm.cs">
@@ -73,6 +79,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Truck.cs" />
     <Compile Include="Worker.cs" />
+    <Compile Include="WorkersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkersForm.Designer.cs">
+      <DependentUpon>WorkersForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AdminForm.resx">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ClientForm.resx">
       <DependentUpon>ClientForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,6 +107,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="WorkersForm.resx">
+      <DependentUpon>WorkersForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

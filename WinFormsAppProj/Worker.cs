@@ -6,35 +6,53 @@ using System.Threading.Tasks;
 
 namespace WinFormsAppProj
 {
+    [Serializable]
     class Worker : Person
     {
-        private int _salary;                    //ЗП
-        private int _Salary
+        private int salary;                    //ЗП
+        public int Salary
         {
             get
             {
-                return _salary;
+                return salary;
             }
             set
             {
                 if (value > 0)
-                    _salary = value;
+                    salary = value;
+                else
+                    throw new SalaryException("Неправильно введена заробітня платня", value);
             }
         }
-        private string _WorkingPos { get; set; } //Посада
+        private string workingPos;//Посада
+        public string WorkingPos
+        {
+            get
+            {
+                return workingPos;
+            }
+            set
+            {
+                if (value == "Менеджер" || value == "Консультант" || value == "PR-менеджер" || value == "Менеджер" || value == "Механік")
+                {
+                    workingPos = value;
+                }
+                else
+                {
+                    throw new WorkingPosException("Неправильно введена посада", value);
+                }
+            }
+        }
 
-        public Worker() : base()
+        /*public Worker() : base()
         {
             _salary = 0;
             _WorkingPos = "Невизначено";
-        }
+        }*/
         public Worker(string name, string surname, DateTime Birthday, string sex, int salary, string WorkingPos) : base(name, surname, Birthday, sex)
         {
-            if (salary > 0)
-                _salary = salary;
-            else
-                _salary = 0;
-            _WorkingPos = WorkingPos;
+            Salary = salary;
+            this.WorkingPos = WorkingPos;
         }
 
        /* //Гетер/сетер ЗП

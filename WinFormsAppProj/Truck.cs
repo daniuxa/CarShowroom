@@ -8,37 +8,37 @@ namespace WinFormsAppProj
 {
     class Truck : Car
     {
-        private int _carryingCapacity;    //Вантажопідйомність
-        public int _CarryingCapacity
+        private int carryingCapacity;    //Вантажопідйомність
+        public int CarryingCapacity
         {
             get
             {
-                return _carryingCapacity;
+                return carryingCapacity;
             }
             set
             {
                 if (value > 0)
-                    _carryingCapacity = value;
+                    carryingCapacity = value;
                 else
                 {
                     throw new CarryingCapException("Вантажопідйомність менша обо дорівнює нулю", value);
                 }
             }
         }
-        private short _amountAxles;       //Кількість осей
-        public short _AmountAxles
+        private short amountAxles;       //Кількість осей
+        public short AmountAxles
         {
             get
             {
-                return _amountAxles;
+                return amountAxles;
             }
             set
             {
-                if (value > 0)
-                    _amountAxles = value;
+                if (value > 0 && value < 6)
+                    amountAxles = value;
                 else
                 {
-                    throw new AxlesException("Кількість осей менеша або дорівнює нулю", value);
+                    throw new AxlesException("Невірна кількість осей", value);
                 }
             }
         }
@@ -50,8 +50,8 @@ namespace WinFormsAppProj
         }*/
         public Truck(string brand, string model, int ProductionYear, int price, int power, int CarryingCapacity, short AmountAxles) : base(brand, ProductionYear, price, power, model)
         {
-            _CarryingCapacity = CarryingCapacity;
-            _AmountAxles = AmountAxles;
+            this.CarryingCapacity = CarryingCapacity;
+            this.AmountAxles = AmountAxles;
         }
         public Truck(string brand, string model, int ProductionYear) : base(brand, ProductionYear, model)
         {
