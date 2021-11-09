@@ -35,7 +35,7 @@ namespace WinFormsAppProj
             {
                 if (value == "Менеджер" || value == "Консультант" || value == "PR-менеджер" || value == "Менеджер" || value == "Механік")
                 {
-                    workingPos = value;
+                     workingPos = value;
                 }
                 else
                 {
