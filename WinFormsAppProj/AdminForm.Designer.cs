@@ -97,6 +97,7 @@ namespace WinFormsAppProj
             this.CarsButtn.TabIndex = 11;
             this.CarsButtn.Text = "Автомобілі";
             this.CarsButtn.UseVisualStyleBackColor = true;
+            this.CarsButtn.Click += new System.EventHandler(this.CarsButtn_Click);
             // 
             // StatButtn
             // 

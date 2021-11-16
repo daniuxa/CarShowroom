@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace WinFormsAppProj
 {
     [Serializable]
-    class Worker : Person
+    class Worker : Person, IComparable<Worker>
     {
         private int salary;                    //ЗП
         public int Salary
@@ -55,15 +55,20 @@ namespace WinFormsAppProj
             this.WorkingPos = WorkingPos;
         }
 
-       /* //Гетер/сетер ЗП
-        public int GetSalary()
+        public int CompareTo(Worker other)
         {
-            return _salary;
+            return this.Salary.CompareTo(other.Salary);
         }
-        public void SetSalary(int salary)
-        {
-            _salary = salary;
-        }*/
+
+        /* //Гетер/сетер ЗП
+         public int GetSalary()
+         {
+             return _salary;
+         }
+         public void SetSalary(int salary)
+         {
+             _salary = salary;
+         }*/
 
         /*//Гетер/сетер посади
         public string GetWorkingPos()

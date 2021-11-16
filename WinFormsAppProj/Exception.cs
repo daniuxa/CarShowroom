@@ -142,4 +142,26 @@ namespace WinFormsAppProj
             Value = value;
         }
     }
+    class TypeException : Exception
+    {
+        public string Value { get; }
+        public TypeException(string msg, string value) : base(msg)
+        {
+            Value = value;
+        }
+    }
+
+}
+
+class VolumeException : Exception
+{
+    public double Value { get; }
+    public VolumeException(string msg, double value) : base(msg)
+    {
+        Value = value;
+    }
+    /*public PowerException(string msg, int value, Exception InnerException) : base(msg, InnerException)
+    {
+        Value = value;
+    }*/
 }

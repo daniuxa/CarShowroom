@@ -287,6 +287,7 @@ namespace WinFormsAppProj
                         MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
                         return;
                     }
+
                     try
                     {
                         LightCar SearchCarTo = new LightCar(BrandAuto.Text, ModelAuto.Text, YearTo);

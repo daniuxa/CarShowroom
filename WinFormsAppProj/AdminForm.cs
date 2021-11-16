@@ -53,5 +53,12 @@ namespace WinFormsAppProj
                 formatter.Serialize(fs, Arr);
             }
         }
+
+        private void CarsButtn_Click(object sender, EventArgs e)
+        {
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"C:\Users\saliv\Downloads\3.wav");
+            player.Load();
+            player.PlaySync();
+        }
     }
 }

@@ -60,7 +60,9 @@
     <Compile Include="ClientForm.Designer.cs">
       <DependentUpon>ClientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Engines.cs" />
     <Compile Include="Exception.cs" />
+    <Compile Include="Interfaces.cs" />
     <Compile Include="LightCar.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

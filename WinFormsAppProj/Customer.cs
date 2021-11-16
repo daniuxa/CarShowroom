@@ -32,59 +32,27 @@ namespace WinFormsAppProj
         {
             get
             {
-                return VisitDate;
+                return visitDate;
             }
             set
             {
                 if (value > DateTime.Now)
-                    VisitDate = value;
+                    visitDate = value;
                 else if (value.Year > DateTime.Now.Year + 1)
                     throw new VisitDayException("Дата візиту задана в далекому майбутньному", value);
                 else
                     throw new VisitDayException("Дата візиту задана в минулому", value);
             }
         }
-        public LightCar ViewLightCar { get; set; }
-        public Truck ViewTruck { get; set; }
-        /*public Сustomer() : base()
-        {
-            _PhoneNumber = "Невизначено";
-            _visitDate = new DateTime();
-        }*/
-        public Сustomer(string name, string surname, DateTime Birthday, string sex, string PhoneNumber, DateTime VisitDate, LightCar ViewLightCar) : base(name, surname, Birthday, sex)
+
+        public Car ViewCar { get; set; }
+
+        public Сustomer(string name, string surname, DateTime Birthday, string sex, string PhoneNumber, DateTime VisitDate, Car ViewCar) : base(name, surname, Birthday, sex)
         {
             this.PhoneNumber = PhoneNumber;
             this.VisitDate = VisitDate;
-            this.VisitDate = new DateTime();
-            this.ViewLightCar = ViewLightCar;
-        }
-        public Сustomer(string name, string surname, DateTime Birthday, string sex, string PhoneNumber, DateTime VisitDate, Truck ViewTruck) : base(name, surname, Birthday, sex)
-        {
-            this.PhoneNumber = PhoneNumber;
             this.VisitDate = VisitDate;
-            this.VisitDate = new DateTime();
-            this.ViewLightCar = ViewLightCar;
+            this.ViewCar = ViewCar;
         }
-
-        /*//Гетер/сетер номеру телефона
-        public string GetPhoneNumber()
-        {
-            return _PhoneNumber;
-        }
-        public void SetPhoneNumber(string PhoneNumber)
-        {
-            _PhoneNumber = PhoneNumber;
-        }*/
-
-        /*//Гетер/сетер дати візиту
-        public DateTime GetVisitDate()
-        {
-            return _VisitDate;
-        }
-        public void SetVisitDate(DateTime VisitDate)
-        {
-            if (VisitDate > DateTime.Now)
-                _VisitDate = VisitDate;
-        }*/
     }
 }

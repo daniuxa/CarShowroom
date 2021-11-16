@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WinFormsAppProj
 {
-    abstract class Car
+    abstract class Car : IComparer<Car>
     {
-        public string brand { get; set; }              //Бренд автомобіля
-        public string model { get; set; }              //Модель автомобіля
+        public string brand { get; set; }         //Бренд автомобіля
+        public string model { get; set; }         //Модель автомобіля
         protected int productionYear;             //Рік виробництва
         public int ProductionYear
         {
@@ -83,15 +83,26 @@ namespace WinFormsAppProj
             this.ProductionYear = ProductionYear;
             this.model = model;
         }
-        /*//Гетер/сетер бренду
-        public string GetBrand()
+
+        public int Compare(Car x, Car y)
         {
-            return _brand;
+            if (x.GetType() == y.GetType() && x.model == y.model && x.brand == y.brand && x.ProductionYear >= y.ProductionYear)
+                return 1;
+            else if (x.GetType() == y.GetType() && x.model == y.model && x.brand == y.brand && x.ProductionYear <= y.ProductionYear)
+                return -1;
+            else
+                return 0;
         }
-        public void SetBrand(string brand)
-        {
-            _brand = brand;
-        }*/
+
+        /*//Гетер/сетер бренду
+public string GetBrand()
+{
+   return _brand;
+}
+public void SetBrand(string brand)
+{
+   _brand = brand;
+}*/
         /*//Гетер/сетер моделі
         public string GetModel()
         {
