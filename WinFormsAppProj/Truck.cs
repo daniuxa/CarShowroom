@@ -48,7 +48,7 @@ namespace WinFormsAppProj
             _carryingCapacity = 0;
             _amountAxles = 0;
         }*/
-        public Truck(string brand, string model, int ProductionYear, int price, int power, int CarryingCapacity, short AmountAxles) : base(brand, ProductionYear, price, power, model)
+        public Truck(string brand, string model, int ProductionYear, int price, IEngine engine, int CarryingCapacity, short AmountAxles) : base(brand, ProductionYear, price, engine, model)
         {
             this.CarryingCapacity = CarryingCapacity;
             this.AmountAxles = AmountAxles;

@@ -32,7 +32,7 @@ namespace WinFormsAppProj
             _BodyType = "Невизначено";
             _topSpeed = 0;
         }*/
-        public LightCar(string brand, string model, int ProductionYear, int price, int power, string BodyType, int TopSpeed) : base(brand, ProductionYear, price, power, model)
+        public LightCar(string brand, string model, int ProductionYear, int price, IEngine engine, string BodyType, int TopSpeed) : base(brand, ProductionYear, price, engine, model)
         {
             this.BodyType = BodyType;
             this.TopSpeed = TopSpeed;

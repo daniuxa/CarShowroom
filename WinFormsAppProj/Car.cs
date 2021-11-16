@@ -8,6 +8,7 @@ namespace WinFormsAppProj
 {
     abstract class Car : IComparer<Car>
     {
+        IEngine Engine { get; set; }
         public string brand { get; set; }         //Бренд автомобіля
         public string model { get; set; }         //Модель автомобіля
         protected int productionYear;             //Рік виробництва
@@ -44,7 +45,7 @@ namespace WinFormsAppProj
                 }
             }
         }
-        protected int power;                           //Потужність автомобіля
+        /*protected int power;                           //Потужність автомобіля
         public int Power
         {
             get
@@ -60,7 +61,7 @@ namespace WinFormsAppProj
                     throw new PowerException("Потужність менша або дорівнює нулю", value);
                 }
             }
-        }
+        }*/
         /*protected Car()
         {
             _brand = "Невизначено";
@@ -69,12 +70,13 @@ namespace WinFormsAppProj
             _price = 0;
             _power = 0;
         }*/
-        protected Car(string brand, int ProductionYear, int price, int power, string model)
+        protected Car(string brand, int ProductionYear, int price, /*int power*/IEngine engine, string model)
         {
             this.brand = brand;
             this.ProductionYear = ProductionYear;
             Price = price;
-            Power = power;
+            Engine = engine;
+           // Power = power;
             this.model = model;
         }
         protected Car(string brand, int ProductionYear, string model)
