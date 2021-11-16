@@ -61,7 +61,11 @@ namespace WinFormsAppProj
 
         public void PlaySound()
         {
-            
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.IO.Stream resourceStream = assembly.GetManifestResourceStream(@"WinFormsAppProj.Sounds.1.wav");
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(resourceStream);
+            player.Load();
+            player.Play();
         }
         public FstType()
         {
@@ -125,7 +129,11 @@ namespace WinFormsAppProj
 
         public void PlaySound()
         {
-
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.IO.Stream resourceStream = assembly.GetManifestResourceStream(@"WinFormsAppProj.Sounds.2.wav");
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(resourceStream);
+            player.Load();
+            player.Play();
         }
         public SecondType()
         {
@@ -189,7 +197,11 @@ namespace WinFormsAppProj
 
         public void PlaySound()
         {
-
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.IO.Stream resourceStream = assembly.GetManifestResourceStream(@"WinFormsAppProj.Sounds.3.wav");
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(resourceStream);
+            player.Load();
+            player.Play();
         }
         public TrdType()
         {

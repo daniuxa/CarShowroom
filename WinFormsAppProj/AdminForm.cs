@@ -56,9 +56,11 @@ namespace WinFormsAppProj
 
         private void CarsButtn_Click(object sender, EventArgs e)
         {
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"C:\Users\saliv\Downloads\3.wav");
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.IO.Stream resourceStream = assembly.GetManifestResourceStream(@"WinFormsAppProj.Sounds.2.wav");
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(resourceStream);
             player.Load();
-            player.PlaySync();
+            player.Play();
         }
     }
 }

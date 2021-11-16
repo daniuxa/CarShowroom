@@ -7,7 +7,6 @@ using System.Media;
 
 namespace WinFormsAppProj
 {
-    
     interface IEngine
     {
         string Type { get; set; }

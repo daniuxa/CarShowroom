@@ -131,5 +131,12 @@
   <ItemGroup>
     <None Include="Resources\depositphotos_19167731-stock-illustration-mavi-otomobil-logosu.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sounds\2.wav" />
+    <EmbeddedResource Include="Sounds\3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sounds\1.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
