@@ -14,4 +14,20 @@ namespace WinFormsAppProj
         double Volume { get; set; }
         void PlaySound();
     }
+
+    interface ICar
+    {
+        IEngine Engine { get; set; }
+        string Brand { get; set; }         
+        string Model { get; set; }
+        int ProductionYear { get; set; }
+        int Price { get; set; }
+    }
+    interface IPerson
+    {
+        string Name { get; set; }
+        string Surname { get; set; }
+        DateTime Birthday { get; set; }
+        string Sex { get; set; }
+    }
 }

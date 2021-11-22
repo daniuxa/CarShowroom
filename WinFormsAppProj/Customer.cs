@@ -17,7 +17,7 @@ namespace WinFormsAppProj
             }
             set
             {
-                if (value.Length == 10)
+                if (value.Length == 10 && Int32.TryParse(value, out int result) == true)
                 {
                     phoneNumber = value;
                 }
@@ -36,7 +36,7 @@ namespace WinFormsAppProj
             }
             set
             {
-                if (value > DateTime.Now)
+                if (value >= DateTime.Now && value.Year <= DateTime.Now.Year + 1)
                     visitDate = value;
                 else if (value.Year > DateTime.Now.Year + 1)
                     throw new VisitDayException("Дата візиту задана в далекому майбутньному", value);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace WinFormsAppProj
 {
     [Serializable]
-    abstract class Person
+    abstract class Person : IPerson
     {
         public string Name { get; set; }        //Ім'я
         public string Surname { get; set; }     //Прізвище

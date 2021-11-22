@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace WinFormsAppProj
 {
-    abstract class Car : IComparer<Car>
-    {
-        IEngine Engine { get; set; }
-        public string brand { get; set; }         //Бренд автомобіля
-        public string model { get; set; }         //Модель автомобіля
+    abstract class Car : IComparer<Car>, ICar
+    {   
+        public IEngine Engine { get; set; }
+        public string Brand { get; set; }         //Бренд автомобіля
+        public string Model { get; set; }         //Модель автомобіля
         protected int productionYear;             //Рік виробництва
         public int ProductionYear
         {
@@ -72,25 +72,25 @@ namespace WinFormsAppProj
         }*/
         protected Car(string brand, int ProductionYear, int price, /*int power*/IEngine engine, string model)
         {
-            this.brand = brand;
+            this.Brand = brand;
             this.ProductionYear = ProductionYear;
             Price = price;
             Engine = engine;
            // Power = power;
-            this.model = model;
+            this.Model = model;
         }
         protected Car(string brand, int ProductionYear, string model)
         {
-            this.brand = brand;
+            this.Brand = brand;
             this.ProductionYear = ProductionYear;
-            this.model = model;
+            this.Model = model;
         }
 
         public int Compare(Car x, Car y)
         {
-            if (x.GetType() == y.GetType() && x.model == y.model && x.brand == y.brand && x.ProductionYear >= y.ProductionYear)
+            if (x.GetType() == y.GetType() && x.Model == y.Model && x.Brand == y.Brand && x.ProductionYear >= y.ProductionYear)
                 return 1;
-            else if (x.GetType() == y.GetType() && x.model == y.model && x.brand == y.brand && x.ProductionYear <= y.ProductionYear)
+            else if (x.GetType() == y.GetType() && x.Model == y.Model && x.Brand == y.Brand && x.ProductionYear <= y.ProductionYear)
                 return -1;
             else
                 return 0;
