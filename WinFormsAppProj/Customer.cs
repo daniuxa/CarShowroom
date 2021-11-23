@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WinFormsAppProj
 {
-    class Сustomer : Person
+    class Сustomer : Person, IComparable
     {
         private string phoneNumber;
         public string PhoneNumber
@@ -53,6 +53,15 @@ namespace WinFormsAppProj
             this.VisitDate = VisitDate;
             this.VisitDate = VisitDate;
             this.ViewCar = ViewCar;
+        }
+
+        public int CompareTo(object obj)
+        {
+            Сustomer p = obj as Сustomer;
+            if (p != null)
+                return this.VisitDate.CompareTo(p.VisitDate);
+            else
+                throw new Exception("Неможливо порівняти два об'єкта");
         }
     }
 }
