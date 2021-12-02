@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace WinFormsAppProj
 {
-    abstract class Car : IComparer<Car>, ICar
+    [Serializable]
+    public abstract class Car : ICar, IComparable<Car>
     {   
         public IEngine Engine { get; set; }
         public string Brand { get; set; }         //Бренд автомобіля
@@ -86,7 +87,12 @@ namespace WinFormsAppProj
             this.Model = model;
         }
 
-        public int Compare(Car x, Car y)
+        public int CompareTo(Car other)
+        {
+            return Price.CompareTo(other.Price);
+        }
+
+        /*public int Compare(Car x, Car y)
         {
             if (x.GetType() == y.GetType() && x.Model == y.Model && x.Brand == y.Brand && x.ProductionYear >= y.ProductionYear)
                 return 1;
@@ -94,7 +100,7 @@ namespace WinFormsAppProj
                 return -1;
             else
                 return 0;
-        }
+        }*/
 
         /*//Гетер/сетер бренду
 public string GetBrand()

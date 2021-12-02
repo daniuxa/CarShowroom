@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace WinFormsAppProj
 {
     public partial class MainForm : Form
     {
+        AutoShowroom autoShowroom = new AutoShowroom();
         public MainForm()
         {
             InitializeComponent();
@@ -30,8 +33,8 @@ namespace WinFormsAppProj
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
-        }
+           
+        }        
 
         private void AdminLabel_Click(object sender, EventArgs e)
         {
@@ -65,5 +68,6 @@ namespace WinFormsAppProj
         {
             LastPoint = new Point(e.X, e.Y);
         }
+        
     }
 }

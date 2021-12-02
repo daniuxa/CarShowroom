@@ -244,6 +244,7 @@ namespace WinFormsAppProj
             this.Name = "ClientForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ClientForm";
+            this.Load += new System.EventHandler(this.ClientForm_Load);
             this.TopBorder.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

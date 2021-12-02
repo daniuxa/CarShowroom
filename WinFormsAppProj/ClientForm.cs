@@ -12,7 +12,6 @@ namespace WinFormsAppProj
 {
     public partial class ClientForm : Form
     {
-
         public ClientForm()
         {
             InitializeComponent();
@@ -266,7 +265,7 @@ namespace WinFormsAppProj
             }
         
 
-            if (/*BrandAuto.Text == ""*/ /*|| ModelAuto.Text == ""*/ /*||*/ TypeAuto.Text == "") 
+            if (TypeAuto.Text == "") 
             {
                 MessageBox.Show("Перевірте введені вами значення");
             }
@@ -278,9 +277,12 @@ namespace WinFormsAppProj
             {
                 if (TypeAuto.Text == "Легковий автомобіль")
                 {
+                    LightCar SearchCarFrom;
+                    LightCar SearchCarTo;
                     try
                     {
-                        LightCar SearchCarFrom = new LightCar(BrandAuto.Text, ModelAuto.Text, YearFrom);
+                        SearchCarFrom = new LightCar(BrandAuto.Text, ModelAuto.Text, YearFrom);
+                        //LightCar SearchCar1 = new LightCar(BrandAuto.Text, ModelAuto.Text, YearFrom, 100, new FstType(), "", 100);
                     }
                     catch(YearProdException ex)
                     {
@@ -290,20 +292,27 @@ namespace WinFormsAppProj
 
                     try
                     {
-                        LightCar SearchCarTo = new LightCar(BrandAuto.Text, ModelAuto.Text, YearTo);
+                        SearchCarTo = new LightCar(BrandAuto.Text, ModelAuto.Text, YearTo);
                     }
                     catch (YearProdException ex)
                     {
                         MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
                         return;
                     }
-                   
+                    CarList Form = new CarList();
+                    Form.carFrom = SearchCarFrom;
+                    Form.carTo = SearchCarTo;
+
+                    this.Close();
+                    Form.ShowDialog();
                 }
                 else
                 {
+                    Truck SearchCarFrom;
+                    Truck SearchCarTo;
                     try
                     {
-                        Truck SearchCarFrom = new Truck(BrandAuto.Text, ModelAuto.Text, YearFrom);
+                        SearchCarFrom = new Truck(BrandAuto.Text, ModelAuto.Text, YearFrom);
                     }
                     catch(YearProdException ex)
                     {
@@ -312,15 +321,24 @@ namespace WinFormsAppProj
                     }
                     try
                     {
-                        Truck SearchCarTo = new Truck(BrandAuto.Text, ModelAuto.Text, YearTo);
+                        SearchCarTo = new Truck(BrandAuto.Text, ModelAuto.Text, YearTo);
                     }
                     catch(YearProdException ex)
                     {
                         MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
                         return;
                     }
+                    CarList Form = new CarList();
+                    Form.carFrom = SearchCarFrom;
+                    Form.carTo = SearchCarTo;
+                    this.Close();
+                    Form.ShowDialog();
                 }
-                MessageBox.Show($"Введені вами значення:\n{TypeAuto.Text}\n{BrandAuto.Text}\n{ModelAuto.Text}\nРік\tВід:{YearFrom} До:{YearTo}");
+              
+                /* CarList Form = new CarList();
+                 this.Close();
+                 Form.ShowDialog();*/
+                //MessageBox.Show($"Введені вами значення:\n{TypeAuto.Text}\n{BrandAuto.Text}\n{ModelAuto.Text}\nРік\tВід:{YearFrom} До:{YearTo}");
             }
         }
 
@@ -359,5 +377,56 @@ namespace WinFormsAppProj
         {
             LastPoint = new Point(e.X, e.Y);
         }
+
+        private void ClientForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+
+
+
+/*class Tomato : Vegetable
+{
+    private string sort;
+    public string Sort 
+    {
+        get
+        {
+            return  sort;
+        }
+
+        set
+        {
+            bool check = false;
+            foreach (string sortName in Sorts)
+            {
+                if (value == sortName)
+                {
+                    sort = value;
+                    check = true;
+                    break;
+                }
+            }
+            if (check == false)
+            {
+                throw new Exception();
+            }
+        }
+    }
+    string[] Sorts = { "Первоклашка", "Красный петух", "Рио Гранде", "Снежный барс", "Гигант лимонный", "Снегирек" };
+    public Tomato(string Name, string Color, int Calories, double Price, int Amount, string sort)
+    : base(Name, Color, Calories, Price, Amount)
+    {
+
+        try
+        {
+            Sort = sort;
+        }
+        catch
+        {
+            Console.WriteLine("Wrong sort");
+        }
+    }
+}*/

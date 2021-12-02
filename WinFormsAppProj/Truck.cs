@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WinFormsAppProj
 {
+    [Serializable]
     class Truck : Car
     {
         private int carryingCapacity;    //Вантажопідйомність

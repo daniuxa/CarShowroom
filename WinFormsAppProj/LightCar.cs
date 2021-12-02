@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WinFormsAppProj
 {
+    [Serializable]
     class LightCar : Car
     {
         public string BodyType { get; set; } //Тип кузова автомобіля

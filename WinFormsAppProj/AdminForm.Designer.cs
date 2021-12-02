@@ -108,6 +108,7 @@ namespace WinFormsAppProj
             this.StatButtn.TabIndex = 12;
             this.StatButtn.Text = "Статистика";
             this.StatButtn.UseVisualStyleBackColor = true;
+            this.StatButtn.Click += new System.EventHandler(this.StatButtn_Click);
             // 
             // AdminForm
             // 

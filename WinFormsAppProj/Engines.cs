@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WinFormsAppProj
 {
+    [Serializable]
     class FstType : IEngine
     {
         private string type;
@@ -18,7 +19,7 @@ namespace WinFormsAppProj
             set
             {
                 if (value == "Бензиновий" || value == "Дизельний")
-                    type = Type;
+                    type = value;
                 else
                     throw new TypeException("Неправильно задан тип двигуна", value);
             }
@@ -52,7 +53,7 @@ namespace WinFormsAppProj
             }
             set
             {
-                if (volume > 0 && volume < 100)
+                if (value > 0.0 && value < 100.0)
                     volume = value;
                 else
                     throw new VolumeException("Неправильно задан об'єм двигуна", value);
@@ -74,6 +75,7 @@ namespace WinFormsAppProj
             Volume = 1.8;
         }
     }
+    [Serializable]
     class SecondType : IEngine
     {
         private string type;
@@ -86,7 +88,7 @@ namespace WinFormsAppProj
             set
             {
                 if (value == "Бензиновий" || value == "Дизельний")
-                    type = Type;
+                    type = value;
                 else
                     throw new TypeException("Неправильно задан тип двигуна", value);
             }
@@ -120,7 +122,7 @@ namespace WinFormsAppProj
             }
             set
             {
-                if (volume > 0 && volume < 100)
+                if (value > 0 && value < 100)
                     volume = value;
                 else
                     throw new VolumeException("Неправильно задан об'єм двигуна", value);
@@ -142,6 +144,7 @@ namespace WinFormsAppProj
             Volume = 2.5;
         }
     }
+    [Serializable]
     class TrdType : IEngine
     {
         private string type;
@@ -154,7 +157,7 @@ namespace WinFormsAppProj
             set
             {
                 if (value == "Бензиновий" || value == "Дизельний")
-                    type = Type;
+                    type = value;
                 else
                     throw new TypeException("Неправильно задан тип двигуна", value);
             }
@@ -188,7 +191,7 @@ namespace WinFormsAppProj
             }
             set
             {
-                if (volume > 0 && volume < 100)
+                if (value > 0 && value < 100)
                     volume = value;
                 else
                     throw new VolumeException("Неправильно задан об'єм двигуна", value);
