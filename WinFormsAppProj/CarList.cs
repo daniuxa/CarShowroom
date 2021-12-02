@@ -206,9 +206,13 @@ namespace WinFormsAppProj
 
         private void SelectButtn_Click(object sender, EventArgs e)
         {
+            Car car;
             if (CarListView.SelectedItems.Count == 1)
             {
-                MessageBox.Show("fd");
+                ConfirmationForm Form = new ConfirmationForm();
+                car = autoShowroomFiltred[CarListView.SelectedItems[0].Index];
+                Form.SearchCar = car;
+                Form.ShowDialog();
             }
             else
             {
