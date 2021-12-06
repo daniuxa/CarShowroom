@@ -49,7 +49,7 @@ namespace WinFormsAppProj
             _salary = 0;
             _WorkingPos = "Невизначено";
         }*/
-        public Worker(string name, string surname, DateTime Birthday, string sex, int salary, string WorkingPos) : base(name, surname, Birthday, sex)
+        public Worker(string name, string surname, string sex, int salary, string WorkingPos) : base(name, surname, sex)
         {
             Salary = salary;
             this.WorkingPos = WorkingPos;

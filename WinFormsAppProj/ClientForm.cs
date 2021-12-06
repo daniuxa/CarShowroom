@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace WinFormsAppProj
 {
+    delegate void ErrorMsg();
+
     public partial class ClientForm : Form
     {
+        private LightCar SearchLightCarFrom = null;
+        private LightCar SearchLightCarTo = null;
+        private Truck SearchTruckFrom = null;
+        private Truck SearchTruckTo = null;
         public ClientForm()
         {
             InitializeComponent();
@@ -192,9 +198,21 @@ namespace WinFormsAppProj
 
         }
 
-        private void SearcButtn_Click(object sender, EventArgs e)
+        private void YearError()
         {
-            /*Controls.Clear();*/
+            MessageBox.Show("Неправильно введено рік", "Помилка вводу року", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void InputError()
+        {
+            MessageBox.Show("Перевірте введені вами значення", "Помилка вводу", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void DistantPastYearError()
+        {
+            MessageBox.Show("Рік виробництва не може бути меншим ніж 1900 рік", "Помилка вводу року", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private ErrorMsg CheckError()
+        {
+            ErrorMsg Msg = null;
             int YearFrom = 1;
             int YearTo = 1;
             if (FromYear.Text == "" && ToYear.Text == "")
@@ -210,8 +228,8 @@ namespace WinFormsAppProj
                 }
                 catch (FormatException)
                 {
-                    MessageBox.Show("Неправильно введено рік");
-                    return;
+                    Msg = YearError;
+                    return Msg;
                 }
             }
             else if (FromYear.Text == "" && ToYear.Text != "")
@@ -222,8 +240,8 @@ namespace WinFormsAppProj
                 }
                 catch (FormatException)
                 {
-                    MessageBox.Show("Неправильно введено рік");
-                    return;
+                    Msg = YearError;
+                    return Msg;
                 }
             }
             else if (FromYear.Text != "" && ToYear.Text != "")
@@ -235,110 +253,135 @@ namespace WinFormsAppProj
                 }
                 catch (FormatException)
                 {
-                    MessageBox.Show("Неправильно введено рік");
-                    return;
+                    Msg = YearError;
+                    return Msg;
                 }
             }
             if (FromYear.Text != "" && ToYear.Text != "")
             {
                 if (YearFrom < 1900 || YearTo < 1900)
                 {
-                    MessageBox.Show("Рік виробництва не може бути меншим ніж 1900 рік");
-                    return;
+                    Msg = DistantPastYearError;
+                    return Msg;
                 }
             }
             else if (FromYear.Text == "" && ToYear.Text != "")
             {
                 if (YearTo < 1900)
                 {
-                    MessageBox.Show("Рік виробництва не може бути меншим ніж 1900 рік");
-                    return;
+                    Msg = DistantPastYearError;
+                    return Msg;
                 }
             }
             else if (FromYear.Text != "" && ToYear.Text == "")
             {
                 if (YearFrom < 1900)
                 {
-                    MessageBox.Show("Рік виробництва не може бути меншим ніж 1900 рік");
-                    return;
+                    Msg = DistantPastYearError;
+                    return Msg;
                 }
             }
-        
 
-            if (TypeAuto.Text == "") 
+
+            if (TypeAuto.Text == "")
             {
-                MessageBox.Show("Перевірте введені вами значення");
+                Msg = InputError;
+                return Msg;
             }
             else if (YearFrom > YearTo && FromYear.Text != "" && ToYear.Text != "")
             {
-                MessageBox.Show("Перевірте введений вами рік");
+                Msg = YearError;
+                return Msg;
             }
             else
             {
                 if (TypeAuto.Text == "Легковий автомобіль")
                 {
-                    LightCar SearchCarFrom;
-                    LightCar SearchCarTo;
-                    try
-                    {
-                        SearchCarFrom = new LightCar(BrandAuto.Text, ModelAuto.Text, YearFrom);
-                        //LightCar SearchCar1 = new LightCar(BrandAuto.Text, ModelAuto.Text, YearFrom, 100, new FstType(), "", 100);
-                    }
-                    catch(YearProdException ex)
-                    {
-                        MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
-                        return;
-                    }
 
                     try
                     {
-                        SearchCarTo = new LightCar(BrandAuto.Text, ModelAuto.Text, YearTo);
+                        SearchLightCarFrom = new LightCar(BrandAuto.Text, ModelAuto.Text, YearFrom);
                     }
                     catch (YearProdException ex)
                     {
                         MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
-                        return;
+                        Msg = delegate ()
+                        {
+                            MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
+                        };
+                        return Msg;
                     }
-                    CarList Form = new CarList();
-                    Form.carFrom = SearchCarFrom;
-                    Form.carTo = SearchCarTo;
 
+                    try
+                    {
+                        SearchLightCarTo = new LightCar(BrandAuto.Text, ModelAuto.Text, YearTo);
+                    }
+                    catch (YearProdException ex)
+                    {
+                        Msg = delegate ()
+                        {
+                            MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
+                        };
+                        return Msg;
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        SearchTruckFrom = new Truck(BrandAuto.Text, ModelAuto.Text, YearFrom);
+                    }
+                    catch (YearProdException ex)
+                    {
+                        Msg = () =>
+                        {
+                            MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
+                        };
+                        return Msg;
+                    }
+                    try
+                    {
+                        SearchTruckTo = new Truck(BrandAuto.Text, ModelAuto.Text, YearTo);
+                    }
+                    catch (YearProdException ex)
+                    {
+                        Msg = () =>
+                        {
+                            MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
+                        };
+                        return Msg;
+                    }
+                }
+                return null;
+            }
+        }
+
+        private void SearcButtn_Click(object sender, EventArgs e)
+        {
+            ErrorMsg msg;
+            msg = CheckError();
+            if (msg != null)
+            {
+                msg();
+            }
+            else
+            {
+                if (TypeAuto.Text == "Легковий автомобіль")
+                {
+                    CarList Form = new CarList();
+                    Form.carFrom = SearchLightCarFrom;
+                    Form.carTo = SearchLightCarTo;
                     this.Close();
                     Form.ShowDialog();
                 }
                 else
                 {
-                    Truck SearchCarFrom;
-                    Truck SearchCarTo;
-                    try
-                    {
-                        SearchCarFrom = new Truck(BrandAuto.Text, ModelAuto.Text, YearFrom);
-                    }
-                    catch(YearProdException ex)
-                    {
-                        MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
-                        return;
-                    }
-                    try
-                    {
-                        SearchCarTo = new Truck(BrandAuto.Text, ModelAuto.Text, YearTo);
-                    }
-                    catch(YearProdException ex)
-                    {
-                        MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
-                        return;
-                    }
                     CarList Form = new CarList();
-                    Form.carFrom = SearchCarFrom;
-                    Form.carTo = SearchCarTo;
+                    Form.carFrom = SearchTruckFrom;
+                    Form.carTo = SearchTruckTo;
                     this.Close();
                     Form.ShowDialog();
                 }
-              
-                /* CarList Form = new CarList();
-                 this.Close();
-                 Form.ShowDialog();*/
-                //MessageBox.Show($"Введені вами значення:\n{TypeAuto.Text}\n{BrandAuto.Text}\n{ModelAuto.Text}\nРік\tВід:{YearFrom} До:{YearTo}");
             }
         }
 
@@ -384,49 +427,3 @@ namespace WinFormsAppProj
         }
     }
 }
-
-
-
-/*class Tomato : Vegetable
-{
-    private string sort;
-    public string Sort 
-    {
-        get
-        {
-            return  sort;
-        }
-
-        set
-        {
-            bool check = false;
-            foreach (string sortName in Sorts)
-            {
-                if (value == sortName)
-                {
-                    sort = value;
-                    check = true;
-                    break;
-                }
-            }
-            if (check == false)
-            {
-                throw new Exception();
-            }
-        }
-    }
-    string[] Sorts = { "Первоклашка", "Красный петух", "Рио Гранде", "Снежный барс", "Гигант лимонный", "Снегирек" };
-    public Tomato(string Name, string Color, int Calories, double Price, int Amount, string sort)
-    : base(Name, Color, Calories, Price, Amount)
-    {
-
-        try
-        {
-            Sort = sort;
-        }
-        catch
-        {
-            Console.WriteLine("Wrong sort");
-        }
-    }
-}*/

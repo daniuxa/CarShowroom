@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace WinFormsAppProj
 {
-    delegate bool Compare();
+    delegate bool Compare(Car carTo, Car carFrom);
     public partial class CarList : Form
     {
         public AutoShowroom autoShowroom { get; set; }

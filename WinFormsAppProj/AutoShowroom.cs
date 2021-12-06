@@ -17,7 +17,7 @@ namespace WinFormsAppProj
             BinaryFormatter formatter = new BinaryFormatter();
             using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Cars.bin", FileMode.OpenOrCreate))
             {
-                CarsInShowroom = (List<Car>)formatter.Deserialize(fs); 
+                CarsInShowroom = (List<Car>)formatter.Deserialize(fs);
             }
         }
     }

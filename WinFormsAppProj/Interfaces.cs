@@ -27,7 +27,6 @@ namespace WinFormsAppProj
     {
         string Name { get; set; }
         string Surname { get; set; }
-        DateTime Birthday { get; set; }
         string Sex { get; set; }
     }
 }

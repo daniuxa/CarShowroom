@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WinFormsAppProj
 {
+    [Serializable]
     class Сustomer : Person, IComparable
     {
         private string phoneNumber;
@@ -17,7 +18,7 @@ namespace WinFormsAppProj
             }
             set
             {
-                if (value.Length == 10 && Int32.TryParse(value, out int result) == true)
+                if (value.Length == 10 && Int64.TryParse(value, out long result) == true)
                 {
                     phoneNumber = value;
                 }
@@ -47,7 +48,7 @@ namespace WinFormsAppProj
 
         public Car ViewCar { get; set; }
 
-        public Сustomer(string name, string surname, DateTime Birthday, string sex, string PhoneNumber, DateTime VisitDate, Car ViewCar) : base(name, surname, Birthday, sex)
+        public Сustomer(string name, string surname, string sex, string PhoneNumber, DateTime VisitDate, Car ViewCar) : base(name, surname, sex)
         {
             this.PhoneNumber = PhoneNumber;
             this.VisitDate = VisitDate;

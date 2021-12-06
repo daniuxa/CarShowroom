@@ -7,27 +7,11 @@ using System.Threading.Tasks;
 namespace WinFormsAppProj
 {
     [Serializable]
-    abstract class Person : IPerson
+    public abstract class Person : IPerson
     {
         public string Name { get; set; }        //Ім'я
         public string Surname { get; set; }     //Прізвище
-        protected DateTime birthday;            //Дата народження
-        public DateTime Birthday
-        {
-            get
-            {
-                return birthday;
-            }
-            set
-            {
-                if (value > DateTime.Now.AddYears(-18))
-                    throw new TooYoungException("Покупець занадто молодий", value);
-                else if (value < new DateTime(1900, 1, 1))
-                    throw new TooOldException("Покупець занадто старий", value);
-                else
-                  birthday = value;              
-            }
-        }
+        
         private string sex;
         public string Sex
         {
@@ -46,19 +30,10 @@ namespace WinFormsAppProj
             }
         }        
         
-
-        /*protected Person()
-        {
-            _Name = "Невизначено";
-            _Surname = "Невизначено";
-            _Birthday = new DateTime();
-            _Sex = "Невизначено";
-        }*/
-        protected Person(string name, string surname, DateTime Birthday, string sex)
+        protected Person(string name, string surname, string sex)
         {
             Name = name;
             Surname = surname;
-            this.Birthday = Birthday;
             Sex = sex;
         }
 

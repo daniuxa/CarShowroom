@@ -46,38 +46,13 @@ namespace WinFormsAppProj
                 }
             }
         }
-        /*protected int power;                           //Потужність автомобіля
-        public int Power
-        {
-            get
-            {
-                return power;
-            }
-            set
-            {
-                if (value > 0)
-                    power = value;
-                else
-                {
-                    throw new PowerException("Потужність менша або дорівнює нулю", value);
-                }
-            }
-        }*/
-        /*protected Car()
-        {
-            _brand = "Невизначено";
-            _model = "Невизначено";
-            _productionYear = 0;
-            _price = 0;
-            _power = 0;
-        }*/
+
         protected Car(string brand, int ProductionYear, int price, /*int power*/IEngine engine, string model)
         {
             this.Brand = brand;
             this.ProductionYear = ProductionYear;
             Price = price;
             Engine = engine;
-           // Power = power;
             this.Model = model;
         }
         protected Car(string brand, int ProductionYear, string model)
@@ -90,68 +65,68 @@ namespace WinFormsAppProj
         public int CompareTo(Car other)
         {
             return Price.CompareTo(other.Price);
-        }
-
-        /*public int Compare(Car x, Car y)
-        {
-            if (x.GetType() == y.GetType() && x.Model == y.Model && x.Brand == y.Brand && x.ProductionYear >= y.ProductionYear)
-                return 1;
-            else if (x.GetType() == y.GetType() && x.Model == y.Model && x.Brand == y.Brand && x.ProductionYear <= y.ProductionYear)
-                return -1;
-            else
-                return 0;
-        }*/
-
-        /*//Гетер/сетер бренду
-public string GetBrand()
-{
-   return _brand;
+        }       
+    }
 }
-public void SetBrand(string brand)
+
+
+
+/*namespace ConsoleLection
 {
-   _brand = brand;
-}*/
-        /*//Гетер/сетер моделі
-        public string GetModel()
+    internal class Program
+    {
+        static void Main(string[] args)
         {
-            return _model;
+            Product product = new Product()
+            {
+                Name = "Processor i3",
+                Price = 2500.0
+            };
+
+            product.PriceChanged += HandlerSample;
+
+            product.Price = 2250.0;
         }
-        public void SetModel(string model)
+
+        static void HandlerSample(object sender, PriceChangedEventArg PriceChangedEvent)
         {
-            _model = model;
-        }*/
-        /*//Гетер/сетер для дати виробництва
-        public DateTime GetProductionYear()
-        {
-            return _ProductionYear;
+            Product product = sender as Product;
+            Console.WriteLine($"На товар {product.Name} змінено ціну з {PriceChangedEvent.OldPrice} на {PriceChangedEvent.NewPrice}");
         }
-        public void SetProductionYear(DateTime ProductionYear)
-        {
-            DateTime Date = new DateTime(1970, 1, 1);
-            if (ProductionYear > Date && ProductionYear < DateTime.Now)
-                _ProductionYear = ProductionYear;
-        }*/
-        /*//Гетер/сетер для ціни
-        public int GetPrice()
-        {
-            return _price;
-        }
-        public void SetPrice(int price)
-        {
-            if (price > 0)
-                _price = price;
-        }*/
-        /*//Гетер/сетер для потужності
-        public int GetPower()
-        {
-            return _power;
-        }
-        public void SetPower(int power)
-        {
-            if (power > 0)
-                _power = power;
-        }*/
     }
 
+    // delegate void PriceChanged(object sender, PriceChangedEventArg PriceChangedEvent);
 
-}
+    class Product
+    {
+        double _price;
+
+        public event EventHandler<PriceChangedEventArg> PriceChanged;
+
+        public string Name { get; set; }
+
+        public double Price
+        {
+            get
+            {
+                return _price;
+            }
+
+            set
+            {
+                double oldPrice = _price;
+                _price = value;
+                PriceChanged?.Invoke(this, new PriceChangedEventArg() { OldPrice = oldPrice, NewPrice = _price });
+            }
+        }
+    }
+
+    class PriceChangedEventArg : EventArgs
+    {
+        public double OldPrice { get; set; }
+        public double NewPrice { get; set; }
+    }
+}*/
+
+
+

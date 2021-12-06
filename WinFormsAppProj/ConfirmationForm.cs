@@ -81,7 +81,10 @@ namespace WinFormsAppProj
 
         private void YesButtn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Filling form");
+            ClientDataEntry Form = new ClientDataEntry();
+            Form.car = SearchCar;
+            this.Close();
+            Form.ShowDialog();
         }
 
         private void NoButtn_Click(object sender, EventArgs e)

@@ -45,7 +45,9 @@ namespace WinFormsAppProj
             this.label1 = new System.Windows.Forms.Label();
             this.YesButtn = new System.Windows.Forms.Button();
             this.NoButtn = new System.Windows.Forms.Button();
+            this.pictureBoxAuto = new System.Windows.Forms.PictureBox();
             this.TopBorder.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAuto)).BeginInit();
             this.SuspendLayout();
             // 
             // TopBorder
@@ -219,12 +221,21 @@ namespace WinFormsAppProj
             this.NoButtn.UseVisualStyleBackColor = true;
             this.NoButtn.Click += new System.EventHandler(this.NoButtn_Click);
             // 
+            // pictureBoxAuto
+            // 
+            this.pictureBoxAuto.Location = new System.Drawing.Point(420, 95);
+            this.pictureBoxAuto.Name = "pictureBoxAuto";
+            this.pictureBoxAuto.Size = new System.Drawing.Size(287, 167);
+            this.pictureBoxAuto.TabIndex = 32;
+            this.pictureBoxAuto.TabStop = false;
+            // 
             // ConfirmationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pictureBoxAuto);
             this.Controls.Add(this.NoButtn);
             this.Controls.Add(this.YesButtn);
             this.Controls.Add(this.label1);
@@ -245,6 +256,7 @@ namespace WinFormsAppProj
             this.Text = "ConfirmationForm";
             this.Load += new System.EventHandler(this.ConfirmationForm_Load);
             this.TopBorder.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAuto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,5 +280,6 @@ namespace WinFormsAppProj
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button YesButtn;
         private System.Windows.Forms.Button NoButtn;
+        private System.Windows.Forms.PictureBox pictureBoxAuto;
     }
 }
