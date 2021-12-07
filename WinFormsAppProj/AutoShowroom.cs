@@ -15,6 +15,9 @@ namespace WinFormsAppProj
         public AutoShowroom()
         {
             BinaryFormatter formatter = new BinaryFormatter();
+            var exePath = AppDomain.CurrentDomain.BaseDirectory;
+            
+            var path = Path.Combine(exePath, "Files\\Cars.bin");
             using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Cars.bin", FileMode.OpenOrCreate))
             {
                 CarsInShowroom = (List<Car>)formatter.Deserialize(fs);

@@ -150,8 +150,8 @@
     <EmbeddedResource Include="WorkersForm.resx">
       <DependentUpon>WorkersForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Files\Cars.bin" />
-    <None Include="Files\Customers.bin" />
+    <EmbeddedResource Include="Files\Cars.bin" />
+    <EmbeddedResource Include="Files\Customers.bin" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

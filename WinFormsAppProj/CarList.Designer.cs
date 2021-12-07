@@ -87,7 +87,7 @@ namespace WinFormsAppProj
             this.CarListView.FullRowSelect = true;
             this.CarListView.GridLines = true;
             this.CarListView.HideSelection = false;
-            this.CarListView.Location = new System.Drawing.Point(0, 34);
+            this.CarListView.Location = new System.Drawing.Point(3, 34);
             this.CarListView.Name = "CarListView";
             this.CarListView.Size = new System.Drawing.Size(797, 362);
             this.CarListView.TabIndex = 11;

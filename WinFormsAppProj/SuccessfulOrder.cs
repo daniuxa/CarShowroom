@@ -54,7 +54,7 @@ namespace WinFormsAppProj
         private void OKButtn_Click(object sender, EventArgs e)
         {
             BinaryFormatter formatter = new BinaryFormatter();
-            using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin", FileMode.Append))
             {
                 formatter.Serialize(fs, сustomer);
             }

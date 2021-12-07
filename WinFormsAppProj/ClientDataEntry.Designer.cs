@@ -196,6 +196,7 @@ namespace WinFormsAppProj
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ClientDataEntry";
             this.Text = "ClientDataEntry";
+            this.Load += new System.EventHandler(this.ClientDataEntry_Load);
             this.TopBorder.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

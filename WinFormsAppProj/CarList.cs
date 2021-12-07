@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinFormsAppProj
 {
-    delegate bool Compare(Car carTo, Car carFrom);
+    delegate List<Car> EntryCarList();
     public partial class CarList : Form
     {
-        public AutoShowroom autoShowroom { get; set; }
-        private List<Car> autoShowroomFiltred;
+        private List<Car> carsFiltred;
+
         public Car carFrom { get; set; }
         public Car carTo { get; set; }
         /*public CarList(Car carFrom, Car carTo)
@@ -26,7 +28,7 @@ namespace WinFormsAppProj
         public CarList()
         {
             InitializeComponent();
-            autoShowroomFiltred = new List<Car>();
+            carsFiltred = new List<Car>();
         }
      
 
@@ -60,10 +62,6 @@ namespace WinFormsAppProj
         
         private void AddCarsToList(List<Car> Cars)
         {
-            if (Cars == null)
-            {
-                throw new NullReferenceException("Список пустий");
-            }
             ListViewItem item = null;
             foreach (var Car in Cars)
             {
@@ -73,10 +71,27 @@ namespace WinFormsAppProj
         }
         private void CarList_Load(object sender, EventArgs e)
         {
-            autoShowroom = new AutoShowroom();
+            carsFiltred = FiltringCarList(ReadFromFileCars);
+            
+            if (carsFiltred.Count != 0)
+            {
+                AddCarsToList(carsFiltred);
+            }
+            else
+            {
+                MessageBox.Show("Не знайдено необхідного автомобіля");
+                this.Close();
+            }
+
+        }
+
+        private List<Car> FiltringCarList(EntryCarList entryCarList)
+        {
+            List<Car> carsFiltred = new List<Car>();
+            List<Car> cars = entryCarList();
             if (carTo.Brand != "" && carTo.Model != "")
             {
-                foreach (var car in autoShowroom.CarsInShowroom)
+                foreach (var car in cars)
                 {
                     if (car.GetType() == carTo.GetType() && carTo.Brand == car.Brand && carTo.Model == car.Model)
                     {
@@ -84,33 +99,33 @@ namespace WinFormsAppProj
                         {
                             if (carTo.ProductionYear >= car.ProductionYear && carFrom.ProductionYear <= car.ProductionYear)
                             {
-                                autoShowroomFiltred.Add(car);
+                                carsFiltred.Add(car);
                             }
                         }
                         else if (carTo.ProductionYear == 1 && carFrom.ProductionYear != 1)
                         {
                             if (carFrom.ProductionYear <= car.ProductionYear)
                             {
-                                autoShowroomFiltred.Add(car);
+                                carsFiltred.Add(car);
                             }
                         }
                         else if (carTo.ProductionYear != 1 && carFrom.ProductionYear == 1)
                         {
                             if (carTo.ProductionYear >= car.ProductionYear)
                             {
-                                autoShowroomFiltred.Add(car);
+                                carsFiltred.Add(car);
                             }
                         }
                         else if (carTo.ProductionYear == 1 && carFrom.ProductionYear == 1)
                         {
-                            autoShowroomFiltred.Add(car);
+                            carsFiltred.Add(car);
                         }
                     }
                 }
             }
             else if (carTo.Brand != "" && carTo.Model == "")
             {
-                foreach (var car in autoShowroom.CarsInShowroom)
+                foreach (var car in cars)
                 {
                     if (car.GetType() == carTo.GetType() && carTo.Brand == car.Brand)
                     {
@@ -118,33 +133,33 @@ namespace WinFormsAppProj
                         {
                             if (carTo.ProductionYear >= car.ProductionYear && carFrom.ProductionYear <= car.ProductionYear)
                             {
-                                autoShowroomFiltred.Add(car);
+                                carsFiltred.Add(car);
                             }
                         }
                         else if (carTo.ProductionYear == 1 && carFrom.ProductionYear != 1)
                         {
                             if (carFrom.ProductionYear <= car.ProductionYear)
                             {
-                                autoShowroomFiltred.Add(car);
+                                carsFiltred.Add(car);
                             }
                         }
                         else if (carTo.ProductionYear != 1 && carFrom.ProductionYear == 1)
                         {
                             if (carTo.ProductionYear >= car.ProductionYear)
                             {
-                                autoShowroomFiltred.Add(car);
+                                carsFiltred.Add(car);
                             }
                         }
                         else if (carTo.ProductionYear == 1 && carFrom.ProductionYear == 1)
                         {
-                            autoShowroomFiltred.Add(car);
+                            carsFiltred.Add(car);
                         }
                     }
                 }
             }
             else if (carTo.Brand == "" && carTo.Model == "")
             {
-                foreach (var car in autoShowroom.CarsInShowroom)
+                foreach (var car in cars)
                 {
                     if (car.GetType() == carTo.GetType())
                     {
@@ -152,51 +167,54 @@ namespace WinFormsAppProj
                         {
                             if (carTo.ProductionYear >= car.ProductionYear && carFrom.ProductionYear <= car.ProductionYear)
                             {
-                                autoShowroomFiltred.Add(car);
+                                carsFiltred.Add(car);
                             }
                         }
                         else if (carTo.ProductionYear == 1 && carFrom.ProductionYear != 1)
                         {
                             if (carFrom.ProductionYear <= car.ProductionYear)
                             {
-                                autoShowroomFiltred.Add(car);
+                                carsFiltred.Add(car);
                             }
                         }
                         else if (carTo.ProductionYear != 1 && carFrom.ProductionYear == 1)
                         {
                             if (carTo.ProductionYear >= car.ProductionYear)
                             {
-                                autoShowroomFiltred.Add(car);
+                                carsFiltred.Add(car);
                             }
                         }
                         else if (carTo.ProductionYear == 1 && carFrom.ProductionYear == 1)
                         {
-                            autoShowroomFiltred.Add(car);
+                            carsFiltred.Add(car);
                         }
                     }
                 }
             }
-            try
-            {
-                AddCarsToList(autoShowroomFiltred);
-            }
-            catch (NullReferenceException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            return carsFiltred;
+        }
 
+        private List<Car> ReadFromFileCars()
+        {
+            List<Car> cars = new List<Car>();
+            BinaryFormatter formatter = new BinaryFormatter();
+            using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Cars.bin", FileMode.OpenOrCreate))
+            {
+                cars = (List<Car>)formatter.Deserialize(fs);
+            }
+            return cars;
         }
 
         private void FilterButton_Click(object sender, EventArgs e)
         {
-            autoShowroomFiltred.Sort();
+            carsFiltred.Sort();
             CarListView.Items.Clear();
-            AddCarsToList(autoShowroomFiltred);
+            AddCarsToList(carsFiltred);
         }
 
         private void CarListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //MessageBox.Show("Adfewfs");
+            
         }
 
         private void TopBorder_Paint(object sender, PaintEventArgs e)
@@ -210,7 +228,7 @@ namespace WinFormsAppProj
             if (CarListView.SelectedItems.Count == 1)
             {
                 ConfirmationForm Form = new ConfirmationForm();
-                car = autoShowroomFiltred[CarListView.SelectedItems[0].Index];
+                car = carsFiltred[CarListView.SelectedItems[0].Index];
                 Form.SearchCar = car;
                 Form.ShowDialog();
             }

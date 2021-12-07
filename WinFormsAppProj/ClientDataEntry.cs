@@ -80,5 +80,10 @@ namespace WinFormsAppProj
             Сustomer customer = sender as Сustomer;
             MessageBox.Show($"На сайті замовлен автомобіль: {BoughtCarEventArg.car.Brand} {BoughtCarEventArg.car.Model} {BoughtCarEventArg.car.ProductionYear} року\n\nПокупець: {customer.Name} {customer.Surname} \n\nМобільний телефон: {customer.PhoneNumber}\n\n Дата візиту: {customer.VisitDate.ToString("d")}", "Повідомлення адміністратору", MessageBoxButtons.OK);
         }
+
+        private void ClientDataEntry_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
