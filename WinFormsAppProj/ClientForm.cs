@@ -228,8 +228,8 @@ namespace WinFormsAppProj
                 }
                 catch (FormatException)
                 {
-                    Msg = YearError;
-                    return Msg;
+                    Msg += YearError;
+                    //return Msg;
                 }
             }
             else if (FromYear.Text == "" && ToYear.Text != "")
@@ -240,8 +240,8 @@ namespace WinFormsAppProj
                 }
                 catch (FormatException)
                 {
-                    Msg = YearError;
-                    return Msg;
+                    Msg += YearError;
+                    //return Msg;
                 }
             }
             else if (FromYear.Text != "" && ToYear.Text != "")
@@ -253,44 +253,44 @@ namespace WinFormsAppProj
                 }
                 catch (FormatException)
                 {
-                    Msg = YearError;
-                    return Msg;
+                    Msg += YearError;
+                    //return Msg;
                 }
             }
             if (FromYear.Text != "" && ToYear.Text != "")
             {
                 if (YearFrom < 1900 || YearTo < 1900)
                 {
-                    Msg = DistantPastYearError;
-                    return Msg;
+                    Msg += DistantPastYearError;
+                    //return Msg;
                 }
             }
             else if (FromYear.Text == "" && ToYear.Text != "")
             {
                 if (YearTo < 1900)
                 {
-                    Msg = DistantPastYearError;
-                    return Msg;
+                    Msg += DistantPastYearError;
+                    //return Msg;
                 }
             }
             else if (FromYear.Text != "" && ToYear.Text == "")
             {
                 if (YearFrom < 1900)
                 {
-                    Msg = DistantPastYearError;
-                    return Msg;
+                    Msg += DistantPastYearError;
+                    //return Msg;
                 }
             }
 
 
             if (TypeAuto.Text == "")
             {
-                Msg = InputError;
+                Msg += InputError;
                 return Msg;
             }
             else if (YearFrom > YearTo && FromYear.Text != "" && ToYear.Text != "")
             {
-                Msg = YearError;
+                Msg += YearError;
                 return Msg;
             }
             else
@@ -304,12 +304,12 @@ namespace WinFormsAppProj
                     }
                     catch (YearProdException ex)
                     {
-                        MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
-                        Msg = delegate ()
+                        //MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
+                        Msg += delegate ()
                         {
                             MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
                         };
-                        return Msg;
+                        //return Msg;
                     }
 
                     try
@@ -318,11 +318,11 @@ namespace WinFormsAppProj
                     }
                     catch (YearProdException ex)
                     {
-                        Msg = delegate ()
+                        Msg += delegate ()
                         {
                             MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
                         };
-                        return Msg;
+                        //return Msg;
                     }
                 }
                 else
@@ -333,11 +333,11 @@ namespace WinFormsAppProj
                     }
                     catch (YearProdException ex)
                     {
-                        Msg = () =>
+                        Msg += () =>
                         {
                             MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
                         };
-                        return Msg;
+                        //return Msg;
                     }
                     try
                     {
@@ -345,14 +345,14 @@ namespace WinFormsAppProj
                     }
                     catch (YearProdException ex)
                     {
-                        Msg = () =>
-                        {
-                            MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}");
-                        };
-                        return Msg;
+                        Msg += () => MessageBox.Show($"{ex.Message}\tЗначення: {ex.Value}"); 
+
+
+
+                        //return Msg;
                     }
                 }
-                return null;
+                return Msg;
             }
         }
 

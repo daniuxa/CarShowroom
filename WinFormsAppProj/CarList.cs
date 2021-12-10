@@ -12,19 +12,14 @@ using System.Windows.Forms;
 
 namespace WinFormsAppProj
 {
-    delegate List<Car> EntryCarList();
+    delegate List<T> EntryList<T>();
     public partial class CarList : Form
     {
         private List<Car> carsFiltred;
 
         public Car carFrom { get; set; }
         public Car carTo { get; set; }
-        /*public CarList(Car carFrom, Car carTo)
-        {
-            this.carFrom = carFrom;
-            this.carTo = carTo;
-            autoShowroomFiltred = new List<Car>();
-        }*/
+
         public CarList()
         {
             InitializeComponent();
@@ -85,7 +80,7 @@ namespace WinFormsAppProj
 
         }
 
-        private List<Car> FiltringCarList(EntryCarList entryCarList)
+        private List<Car> FiltringCarList(EntryList<Car> entryCarList)
         {
             List<Car> carsFiltred = new List<Car>();
             List<Car> cars = entryCarList();

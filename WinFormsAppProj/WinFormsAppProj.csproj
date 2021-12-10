@@ -84,6 +84,12 @@
     <Compile Include="Exception.cs" />
     <Compile Include="Interfaces.cs" />
     <Compile Include="LightCar.cs" />
+    <Compile Include="ListClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListClientForm.Designer.cs">
+      <DependentUpon>ListClientForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,12 +113,6 @@
     </Compile>
     <Compile Include="Truck.cs" />
     <Compile Include="Worker.cs" />
-    <Compile Include="WorkersForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WorkersForm.Designer.cs">
-      <DependentUpon>WorkersForm.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConfirmationForm.resx">
       <DependentUpon>ConfirmationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListClientForm.resx">
+      <DependentUpon>ListClientForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -146,9 +149,6 @@
     </Compile>
     <EmbeddedResource Include="SuccessfulOrder.resx">
       <DependentUpon>SuccessfulOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WorkersForm.resx">
-      <DependentUpon>WorkersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Files\Cars.bin" />
     <EmbeddedResource Include="Files\Customers.bin" />

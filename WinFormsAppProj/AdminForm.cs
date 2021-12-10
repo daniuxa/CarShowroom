@@ -39,7 +39,7 @@ namespace WinFormsAppProj
             LastPoint = new Point(e.X, e.Y);
         }
 
-        private void WorkersButtn_Click(object sender, EventArgs e)
+        /*private void WorkersButtn_Click(object sender, EventArgs e)
         {
             List<Car> Cars = new List<Car>()
             {
@@ -93,28 +93,21 @@ namespace WinFormsAppProj
             using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Cars.bin", FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, Cars);
-            }
-            using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Cars.bin", FileMode.OpenOrCreate))
-            {
-                List<Car> deserilizePeople = (List<Car>)formatter.Deserialize(fs);
-
-                foreach (var p in deserilizePeople)
-                {
-                    MessageBox.Show($"Имя: {p.Brand} --- Возраст: {p.Engine.Power}");
-                }
-            }
-        }
+            }         
+        }*/
 
         private void CarsButtn_Click(object sender, EventArgs e)
         {
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            System.IO.Stream resourceStream = assembly.GetManifestResourceStream(@"WinFormsAppProj.Sounds.2.wav");
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer(resourceStream);
-            player.Load();
-            player.Play();
+
         }
 
-        private void StatButtn_Click(object sender, EventArgs e)
+        private void CustomersButtn_Click(object sender, EventArgs e)
+        {
+            ListClientForm form = new ListClientForm();
+            form.ShowDialog();
+        }
+
+        private void AdminForm_Load(object sender, EventArgs e)
         {
 
         }

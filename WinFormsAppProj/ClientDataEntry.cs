@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace WinFormsAppProj
 {
+    /*delegate void BoughtCar(object sender, BoughtCarEventArg BoughtCar);*/
     public partial class ClientDataEntry : Form
     {
         public event EventHandler<BoughtCarEventArg> BoughtCar;
@@ -17,6 +18,7 @@ namespace WinFormsAppProj
         public ClientDataEntry()
         {
             InitializeComponent();
+            BoughtCar += SendMessage;
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -65,8 +67,8 @@ namespace WinFormsAppProj
                 }
                 SuccessfulOrder Form = new SuccessfulOrder();
                 Form.person = сustomer;
-                BoughtCar += SendMessage;
-                BoughtCar?.Invoke(сustomer, new BoughtCarEventArg(сustomer.ViewCar));
+                /*BoughtCar += SendMessage;*/
+                BoughtCar?.Invoke(сustomer, new BoughtCarEventArg(сustomer.ViewCar, DateTime.Now));
                 this.Close();
                 Form.ShowDialog();
             }
@@ -78,7 +80,7 @@ namespace WinFormsAppProj
         static void SendMessage(object sender, BoughtCarEventArg BoughtCarEventArg)
         {
             Сustomer customer = sender as Сustomer;
-            MessageBox.Show($"На сайті замовлен автомобіль: {BoughtCarEventArg.car.Brand} {BoughtCarEventArg.car.Model} {BoughtCarEventArg.car.ProductionYear} року\n\nПокупець: {customer.Name} {customer.Surname} \n\nМобільний телефон: {customer.PhoneNumber}\n\n Дата візиту: {customer.VisitDate.ToString("d")}", "Повідомлення адміністратору", MessageBoxButtons.OK);
+            MessageBox.Show($"На сайті замовлен автомобіль: {BoughtCarEventArg.car.Brand} {BoughtCarEventArg.car.Model} {BoughtCarEventArg.car.ProductionYear} року\n\nЧас покупки: {BoughtCarEventArg.BoughtCarTime.ToString("G")}\n\nПокупець: {customer.Name} {customer.Surname} \n\nМобільний телефон: {customer.PhoneNumber}\n\n Дата візиту: {customer.VisitDate.ToString("d")}", "Повідомлення адміністратору", MessageBoxButtons.OK);
         }
 
         private void ClientDataEntry_Load(object sender, EventArgs e)

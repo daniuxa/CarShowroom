@@ -53,11 +53,37 @@ namespace WinFormsAppProj
 
         private void OKButtn_Click(object sender, EventArgs e)
         {
+            List<Сustomer> сustomers;
+            
             BinaryFormatter formatter = new BinaryFormatter();
-            using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin", FileMode.Append))
+            using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin", FileMode.OpenOrCreate))
             {
-                formatter.Serialize(fs, сustomer);
+                сustomers = (List<Сustomer>)formatter.Deserialize(fs);
             }
+            сustomers.Add(сustomer);
+            using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, сustomers);
+            }
+            /*try
+            {
+                using (BinaryWriter writer = new BinaryWriter(File.Open("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin", FileMode.Append)))
+                {
+                    writer.Write(сustomer.Name);
+                    writer.Write(сustomer.Surname);
+                    writer.Write(сustomer.Sex);
+                    writer.Write(сustomer.PhoneNumber);
+                    writer.Write(сustomer.VisitDate.ToString("d"));
+                    writer.Write(сustomer.ViewCar.);
+                    writer.Write(сustomer.Name);
+                    writer.Write(сustomer.Name);
+                    writer.Write(сustomer.Name);
+                }
+            }
+            catch (Exception e)
+            {
+
+            }*/
             Application.Exit();
         }
     }
