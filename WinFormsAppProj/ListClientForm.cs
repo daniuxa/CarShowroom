@@ -14,9 +14,13 @@ namespace WinFormsAppProj
 {
     public partial class ListClientForm : Form
     {
+        private List<Сustomer> сustomers;
+        private ReadingLists<Сustomer> readingLists;
         public ListClientForm()
         {
             InitializeComponent();
+            readingLists = new ReadingLists<Сustomer>();
+            readingLists.ChangeFilePath("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin");
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -46,19 +50,24 @@ namespace WinFormsAppProj
 
         private void ListClientForm_Load(object sender, EventArgs e)
         {
-            AddClientToList(ReadingFromFileCustomers);
+            AddClientToList(readingLists.FromFile);
         }
         private void AddClientToList(EntryList<Сustomer> readingListCustomer)
         {
-            List<Сustomer> сustomers = readingListCustomer();
-            ListViewItem item = null;
-            foreach (var customer in сustomers)
+            SortedList<string, Сustomer> SortedCustomers = new SortedList<string, Сustomer>();
+            сustomers = readingListCustomer();
+            for (int i = 0; i < сustomers.Count; i++)
             {
-                item = new ListViewItem(new string[] { customer.Name, customer.Surname, customer.Sex, customer.PhoneNumber, customer.VisitDate.ToString("d"), customer.ViewCar.Brand + " " + customer.ViewCar.Model + " " + customer.ViewCar.ProductionYear.ToString()});
+                SortedCustomers.Add(сustomers[i].Name + " " + сustomers[i].Surname, сustomers[i]);
+            }
+            ListViewItem item = null;
+            foreach (var customer in SortedCustomers)
+            {
+                item = new ListViewItem(new string[] { customer.Value.Name, customer.Value.Surname, customer.Value.Sex, customer.Value.PhoneNumber, customer.Value.VisitDate.ToString("d"), customer.Value.ViewCar.Brand + " " + customer.Value.ViewCar.Model + " " + customer.Value.ViewCar.ProductionYear.ToString()});
                 ClientListView.Items.Add(item);
             }
         }
-        private List<Сustomer> ReadingFromFileCustomers()
+        /*private List<Сustomer> ReadingFromFileCustomers()
         {
             List<Сustomer> сustomers = null;
             BinaryFormatter formatter = new BinaryFormatter();
@@ -68,6 +77,21 @@ namespace WinFormsAppProj
                 сustomers = (List<Сustomer>)formatter.Deserialize(fs);
             }
             return сustomers;
+        }*/
+
+        private void ClientListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ClientListView.SelectedItems.Count == 1)
+            {
+                ConfirmationForm Form = new ConfirmationForm();
+                Car car;
+                car = сustomers[ClientListView.SelectedItems[0].Index].ViewCar;
+                Form.SearchCar = car;
+                Form.label1.Visible = false;
+                Form.YesButtn.Visible = false;
+                Form.NoButtn.Visible = false;
+                Form.ShowDialog();
+            }
         }
     }
 }

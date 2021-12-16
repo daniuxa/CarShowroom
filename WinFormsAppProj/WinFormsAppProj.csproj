@@ -9,6 +9,7 @@
     <RootNamespace>WinFormsAppProj</RootNamespace>
     <AssemblyName>WinFormsAppProj</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>9.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -46,13 +47,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCarToList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCarToList.Designer.cs">
+      <DependentUpon>AddCarToList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminCarListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminCarListForm.Designer.cs">
+      <DependentUpon>AdminCarListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AutoShowroom.cs" />
     <Compile Include="Car.cs" />
     <Compile Include="CarList.cs">
       <SubType>Form</SubType>
@@ -81,6 +93,12 @@
     </Compile>
     <Compile Include="Engines.cs" />
     <Compile Include="Events.cs" />
+    <Compile Include="ExampleWorkerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExampleWorkerForm.Designer.cs">
+      <DependentUpon>ExampleWorkerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Exception.cs" />
     <Compile Include="Interfaces.cs" />
     <Compile Include="LightCar.cs" />
@@ -105,6 +123,7 @@
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadingLists.cs" />
     <Compile Include="SuccessfulOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +132,12 @@
     </Compile>
     <Compile Include="Truck.cs" />
     <Compile Include="Worker.cs" />
+    <EmbeddedResource Include="AddCarToList.resx">
+      <DependentUpon>AddCarToList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminCarListForm.resx">
+      <DependentUpon>AdminCarListForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConfirmationForm.resx">
       <DependentUpon>ConfirmationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExampleWorkerForm.resx">
+      <DependentUpon>ExampleWorkerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListClientForm.resx">
       <DependentUpon>ListClientForm.cs</DependentUpon>
@@ -152,6 +180,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Files\Cars.bin" />
     <EmbeddedResource Include="Files\Customers.bin" />
+    <None Include="Files\BrandsLightCar.bin" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

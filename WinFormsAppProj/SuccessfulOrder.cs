@@ -54,6 +54,7 @@ namespace WinFormsAppProj
         private void OKButtn_Click(object sender, EventArgs e)
         {
             List<Сustomer> сustomers;
+/*            ReadingLists<Сustomer> readingLists = new ReadingLists<Сustomer>();*/
             
             BinaryFormatter formatter = new BinaryFormatter();
             using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin", FileMode.OpenOrCreate))

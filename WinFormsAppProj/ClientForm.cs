@@ -32,11 +32,26 @@ namespace WinFormsAppProj
         {
             if (TypeAuto.SelectedIndex == 0)
             {
+                HashSet<string> brands = new HashSet<string>();
+                brands.Add("Toyota");
+                brands.Add("Mercedez-Benz");
+                brands.Add("BMW");
+                brands.Add("Honda");
+                brands.Add("Volkswagen");
+                brands.Add("Ford");
+                brands.Add("Hyundai");
+                brands.Add("Audi");
+                brands.Add("Skoda");
+                brands.Add("Nissan");
                 BrandAuto.Items.Clear();
                 ModelAuto.Items.Clear();
                 BrandAuto.Text = "";
                 ModelAuto.Text = "";
-                BrandAuto.Items.Add("Toyota");
+                foreach (var brand in brands)
+                {
+                    BrandAuto.Items.Add(brand);
+                }
+                /*BrandAuto.Items.Add("Toyota");
                 BrandAuto.Items.Add("Mercedez-Benz");
                 BrandAuto.Items.Add("BMW");
                 BrandAuto.Items.Add("Honda");
@@ -45,7 +60,7 @@ namespace WinFormsAppProj
                 BrandAuto.Items.Add("Hyundai");
                 BrandAuto.Items.Add("Audi");
                 BrandAuto.Items.Add("Skoda");
-                BrandAuto.Items.Add("Nissan");
+                BrandAuto.Items.Add("Nissan");*/
             }
             else if (TypeAuto.SelectedIndex == 1)
             {
@@ -360,7 +375,7 @@ namespace WinFormsAppProj
         {
             ErrorMsg msg;
             msg = CheckError();
-            if (msg != null)
+            if (msg != null) //msg?.Invoke();
             {
                 msg();
             }

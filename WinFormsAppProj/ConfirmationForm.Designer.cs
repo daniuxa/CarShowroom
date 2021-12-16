@@ -200,6 +200,7 @@ namespace WinFormsAppProj
             this.label1.Size = new System.Drawing.Size(213, 20);
             this.label1.TabIndex = 29;
             this.label1.Text = "Підтверджуєте купівлю:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // YesButtn
             // 
@@ -277,9 +278,9 @@ namespace WinFormsAppProj
         private System.Windows.Forms.Label FstField;
         private System.Windows.Forms.Label ScdField;
         private System.Windows.Forms.Button SoundButtn;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button YesButtn;
-        private System.Windows.Forms.Button NoButtn;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Button YesButtn;
+        public System.Windows.Forms.Button NoButtn;
         private System.Windows.Forms.PictureBox pictureBoxAuto;
     }
 }

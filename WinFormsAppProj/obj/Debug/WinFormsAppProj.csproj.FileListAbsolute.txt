@@ -16,3 +16,6 @@ C:\Users\saliv\source\repos\WinFormsAppProj\WinFormsAppProj\obj\Debug\WinFormsAp
 C:\Users\saliv\source\repos\WinFormsAppProj\WinFormsAppProj\obj\Debug\WinFormsAppProj.ClientDataEntry.resources
 C:\Users\saliv\source\repos\WinFormsAppProj\WinFormsAppProj\obj\Debug\WinFormsAppProj.SuccessfulOrder.resources
 C:\Users\saliv\source\repos\WinFormsAppProj\WinFormsAppProj\obj\Debug\WinFormsAppProj.ListClientForm.resources
+C:\Users\saliv\source\repos\WinFormsAppProj\WinFormsAppProj\obj\Debug\WinFormsAppProj.AdminCarListForm.resources
+C:\Users\saliv\source\repos\WinFormsAppProj\WinFormsAppProj\obj\Debug\WinFormsAppProj.AddCarToList.resources
+C:\Users\saliv\source\repos\WinFormsAppProj\WinFormsAppProj\obj\Debug\WinFormsAppProj.ExampleWorkerForm.resources

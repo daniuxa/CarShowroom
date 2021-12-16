@@ -38,7 +38,6 @@ namespace WinFormsAppProj
             this.PhoneNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.VisitDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ViewCar = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.DetailAuto = new System.Windows.Forms.Button();
             this.TopBorder.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +79,7 @@ namespace WinFormsAppProj
             this.PhoneNumber,
             this.VisitDate,
             this.ViewCar});
+            this.ClientListView.FullRowSelect = true;
             this.ClientListView.GridLines = true;
             this.ClientListView.HideSelection = false;
             this.ClientListView.Location = new System.Drawing.Point(12, 34);
@@ -88,6 +88,7 @@ namespace WinFormsAppProj
             this.ClientListView.TabIndex = 18;
             this.ClientListView.UseCompatibleStateImageBehavior = false;
             this.ClientListView.View = System.Windows.Forms.View.Details;
+            this.ClientListView.SelectedIndexChanged += new System.EventHandler(this.ClientListView_SelectedIndexChanged);
             // 
             // NameClient
             // 
@@ -119,24 +120,12 @@ namespace WinFormsAppProj
             this.ViewCar.Text = "Бажане авто";
             this.ViewCar.Width = 141;
             // 
-            // DetailAuto
-            // 
-            this.DetailAuto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DetailAuto.Location = new System.Drawing.Point(285, 389);
-            this.DetailAuto.Name = "DetailAuto";
-            this.DetailAuto.Size = new System.Drawing.Size(213, 49);
-            this.DetailAuto.TabIndex = 19;
-            this.DetailAuto.Text = "Детальна інформація про авто";
-            this.DetailAuto.UseVisualStyleBackColor = true;
-            this.DetailAuto.Click += new System.EventHandler(this.DetailAuto_Click);
-            // 
             // ListClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.DetailAuto);
             this.Controls.Add(this.ClientListView);
             this.Controls.Add(this.TopBorder);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -159,6 +148,5 @@ namespace WinFormsAppProj
         private System.Windows.Forms.ColumnHeader PhoneNumber;
         private System.Windows.Forms.ColumnHeader VisitDate;
         private System.Windows.Forms.ColumnHeader ViewCar;
-        private System.Windows.Forms.Button DetailAuto;
     }
 }

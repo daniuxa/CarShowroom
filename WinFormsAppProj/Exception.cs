@@ -150,18 +150,25 @@ namespace WinFormsAppProj
             Value = value;
         }
     }
-
-}
-
-class VolumeException : Exception
-{
-    public double Value { get; }
-    public VolumeException(string msg, double value) : base(msg)
+    class TypeBodyException : Exception
     {
-        Value = value;
+        public string Value { get; }
+        public TypeBodyException(string msg, string value) : base(msg)
+        {
+            Value = value;
+        }
     }
-    /*public PowerException(string msg, int value, Exception InnerException) : base(msg, InnerException)
+    class VolumeException : Exception
     {
-        Value = value;
-    }*/
+        public double Value { get; }
+        public VolumeException(string msg, double value) : base(msg)
+        {
+            Value = value;
+        }
+        /*public PowerException(string msg, int value, Exception InnerException) : base(msg, InnerException)
+        {
+            Value = value;
+        }*/
+    }
 }
+

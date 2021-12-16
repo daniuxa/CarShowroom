@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace WinFormsAppProj
 {
     [Serializable]
-    class Worker : Person, IComparable<Worker>
+    class Worker<T> : Person
     {
-        private int salary;                    //ЗП
+        private int salary;                    
         public int Salary
         {
             get
@@ -24,7 +24,7 @@ namespace WinFormsAppProj
                     throw new SalaryException("Неправильно введена заробітня платня", value);
             }
         }
-        private string workingPos;//Посада
+        private string workingPos;
         public string WorkingPos
         {
             get
@@ -33,7 +33,7 @@ namespace WinFormsAppProj
             }
             set
             {
-                if (value == "Менеджер" || value == "Консультант" || value == "PR-менеджер" || value == "Менеджер" || value == "Механік")
+                if (value == "Консультант" || value == "Механік")
                 {
                      workingPos = value;
                 }
@@ -44,40 +44,13 @@ namespace WinFormsAppProj
             }
         }
 
-        /*public Worker() : base()
-        {
-            _salary = 0;
-            _WorkingPos = "Невизначено";
-        }*/
-        public Worker(string name, string surname, string sex, int salary, string WorkingPos) : base(name, surname, sex)
+        public List<T> TaskList { get; set; }
+
+        public Worker(string name, string surname, string sex, int salary, string WorkingPos, List<T> TaskList) : base(name, surname, sex)
         {
             Salary = salary;
             this.WorkingPos = WorkingPos;
+            this.TaskList = TaskList;
         }
-
-        public int CompareTo(Worker other)
-        {
-            return this.Salary.CompareTo(other.Salary);
-        }
-
-        /* //Гетер/сетер ЗП
-         public int GetSalary()
-         {
-             return _salary;
-         }
-         public void SetSalary(int salary)
-         {
-             _salary = salary;
-         }*/
-
-        /*//Гетер/сетер посади
-        public string GetWorkingPos()
-        {
-            return _WorkingPos;
-        }
-        public void SetWorkingPos(string WorkingPos)
-        {
-            _WorkingPos = WorkingPos;
-        }*/
     }
 }

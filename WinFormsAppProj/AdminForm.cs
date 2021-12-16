@@ -17,6 +17,7 @@ namespace WinFormsAppProj
         public AdminForm()
         {
             InitializeComponent();
+
         }
 
         private void CloseButtn_Click(object sender, EventArgs e)
@@ -98,7 +99,8 @@ namespace WinFormsAppProj
 
         private void CarsButtn_Click(object sender, EventArgs e)
         {
-
+            AdminCarListForm form = new AdminCarListForm();
+            form.ShowDialog();
         }
 
         private void CustomersButtn_Click(object sender, EventArgs e)

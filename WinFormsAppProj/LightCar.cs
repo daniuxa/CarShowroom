@@ -9,7 +9,25 @@ namespace WinFormsAppProj
     [Serializable]
     class LightCar : Car
     {
-        public string BodyType { get; set; } //Тип кузова автомобіля
+        private string bodyType;
+        public string BodyType
+        {
+            get
+            {
+                return bodyType;
+            }
+            set
+            {
+                if (value == "Седан" || value == "Кросовер" || value == "Хетчбек")
+                {
+                    bodyType = value;
+                }
+                else
+                {
+                    throw new TypeBodyException("Неправильно задан тип кузова", value);
+                }
+            }
+        } 
         private int topSpeed;                //Максимальна швидкість автомобіля
         public int TopSpeed
         {
@@ -19,7 +37,7 @@ namespace WinFormsAppProj
             }
             set
             {
-                if (value > 0)
+                if (value > 0 && value < 700)
                     topSpeed = value;
                 else
                 {

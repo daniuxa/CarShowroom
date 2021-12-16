@@ -14,7 +14,6 @@ namespace WinFormsAppProj
 {
     public partial class MainForm : Form
     {
-        AutoShowroom autoShowroom = new AutoShowroom();
         public MainForm()
         {
             InitializeComponent();
