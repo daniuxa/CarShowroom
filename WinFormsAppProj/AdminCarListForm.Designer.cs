@@ -41,7 +41,8 @@ namespace WinFormsAppProj
             this.Power = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Volume = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AddCarButton = new System.Windows.Forms.Button();
-            this.SortButton = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
+            this.ExtraInfoButton = new System.Windows.Forms.Button();
             this.TopBorder.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -139,7 +140,7 @@ namespace WinFormsAppProj
             // AddCarButton
             // 
             this.AddCarButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AddCarButton.Location = new System.Drawing.Point(549, 397);
+            this.AddCarButton.Location = new System.Drawing.Point(644, 397);
             this.AddCarButton.Name = "AddCarButton";
             this.AddCarButton.Size = new System.Drawing.Size(144, 41);
             this.AddCarButton.TabIndex = 19;
@@ -147,16 +148,27 @@ namespace WinFormsAppProj
             this.AddCarButton.UseVisualStyleBackColor = true;
             this.AddCarButton.Click += new System.EventHandler(this.AddCarButton_Click);
             // 
-            // SortButton
+            // DeleteButton
             // 
-            this.SortButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SortButton.Location = new System.Drawing.Point(91, 397);
-            this.SortButton.Name = "SortButton";
-            this.SortButton.Size = new System.Drawing.Size(144, 41);
-            this.SortButton.TabIndex = 21;
-            this.SortButton.Text = "Сортувати";
-            this.SortButton.UseVisualStyleBackColor = true;
-            this.SortButton.Click += new System.EventHandler(this.SortButton_Click);
+            this.DeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DeleteButton.Location = new System.Drawing.Point(12, 397);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(166, 41);
+            this.DeleteButton.TabIndex = 22;
+            this.DeleteButton.Text = "Видалити авто";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // ExtraInfoButton
+            // 
+            this.ExtraInfoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ExtraInfoButton.Location = new System.Drawing.Point(288, 402);
+            this.ExtraInfoButton.Name = "ExtraInfoButton";
+            this.ExtraInfoButton.Size = new System.Drawing.Size(231, 36);
+            this.ExtraInfoButton.TabIndex = 23;
+            this.ExtraInfoButton.Text = "Додаткова інформація";
+            this.ExtraInfoButton.UseVisualStyleBackColor = true;
+            this.ExtraInfoButton.Click += new System.EventHandler(this.ExtraInfoButton_Click);
             // 
             // AdminCarListForm
             // 
@@ -164,7 +176,8 @@ namespace WinFormsAppProj
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.SortButton);
+            this.Controls.Add(this.ExtraInfoButton);
+            this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.AddCarButton);
             this.Controls.Add(this.CarListView);
             this.Controls.Add(this.TopBorder);
@@ -191,6 +204,7 @@ namespace WinFormsAppProj
         private System.Windows.Forms.ColumnHeader Power;
         private System.Windows.Forms.ColumnHeader Volume;
         private System.Windows.Forms.Button AddCarButton;
-        private System.Windows.Forms.Button SortButton;
+        private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button ExtraInfoButton;
     }
 }

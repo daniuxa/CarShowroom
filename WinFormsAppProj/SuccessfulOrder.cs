@@ -54,13 +54,17 @@ namespace WinFormsAppProj
         private void OKButtn_Click(object sender, EventArgs e)
         {
             List<Сustomer> сustomers;
-/*            ReadingLists<Сustomer> readingLists = new ReadingLists<Сustomer>();*/
-            
             BinaryFormatter formatter = new BinaryFormatter();
-            using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin", FileMode.OpenOrCreate))
+            var fi = new FileInfo("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin");
+            if (fi.Length == 0)
+                сustomers = new List<Сustomer>();
+            else
             {
-                сustomers = (List<Сustomer>)formatter.Deserialize(fs);
-            }
+                using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin", FileMode.OpenOrCreate))
+                {
+                    сustomers = (List<Сustomer>)formatter.Deserialize(fs);
+                }
+            }        
             сustomers.Add(сustomer);
             using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin", FileMode.OpenOrCreate))
             {
@@ -85,7 +89,7 @@ namespace WinFormsAppProj
             {
 
             }*/
-            Application.Exit();
+            this.Close();
         }
     }
 }

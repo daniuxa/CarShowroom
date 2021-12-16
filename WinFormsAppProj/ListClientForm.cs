@@ -56,14 +56,14 @@ namespace WinFormsAppProj
         {
             SortedList<string, Сustomer> SortedCustomers = new SortedList<string, Сustomer>();
             сustomers = readingListCustomer();
-            for (int i = 0; i < сustomers.Count; i++)
+            /*for (int i = 0; i < сustomers.Count; i++)
             {
                 SortedCustomers.Add(сustomers[i].Name + " " + сustomers[i].Surname, сustomers[i]);
-            }
+            }*/
             ListViewItem item = null;
-            foreach (var customer in SortedCustomers)
+            foreach (var customer in сustomers)
             {
-                item = new ListViewItem(new string[] { customer.Value.Name, customer.Value.Surname, customer.Value.Sex, customer.Value.PhoneNumber, customer.Value.VisitDate.ToString("d"), customer.Value.ViewCar.Brand + " " + customer.Value.ViewCar.Model + " " + customer.Value.ViewCar.ProductionYear.ToString()});
+                item = new ListViewItem(new string[] { customer.Name, customer.Surname, customer.Sex, customer.PhoneNumber, customer.VisitDate.ToString("d"), customer.ViewCar.Brand + " " + customer.ViewCar.Model + " " + customer.ViewCar.ProductionYear.ToString()});
                 ClientListView.Items.Add(item);
             }
         }
@@ -81,6 +81,11 @@ namespace WinFormsAppProj
 
         private void ClientListView_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+        }
+
+        private void DetailInfoButton_Click(object sender, EventArgs e)
+        {
             if (ClientListView.SelectedItems.Count == 1)
             {
                 ConfirmationForm Form = new ConfirmationForm();
@@ -91,6 +96,33 @@ namespace WinFormsAppProj
                 Form.YesButtn.Visible = false;
                 Form.NoButtn.Visible = false;
                 Form.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Виберіть хоча б один автомобіль");
+            }
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            Сustomer сustomerToDel;
+            if (ClientListView.SelectedItems.Count == 1)
+            {
+                сustomerToDel = сustomers[ClientListView.SelectedItems[0].Index];
+                сustomers.Remove(сustomerToDel);
+
+                ClientListView.Items.Clear();
+                ListViewItem item = null;
+                foreach (var customer in сustomers)
+                {
+                    item = new ListViewItem(new string[] { customer.Name, customer.Surname, customer.Sex, customer.PhoneNumber, customer.VisitDate.ToString("d"), customer.ViewCar.Brand + " " + customer.ViewCar.Model + " " + customer.ViewCar.ProductionYear.ToString() });
+                    ClientListView.Items.Add(item);
+                }
+                BinaryFormatter formatter = new BinaryFormatter();
+                using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin", FileMode.OpenOrCreate))
+                {
+                    formatter.Serialize(fs, сustomers);
+                }
             }
         }
     }

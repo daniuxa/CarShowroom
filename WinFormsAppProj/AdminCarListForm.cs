@@ -76,6 +76,7 @@ namespace WinFormsAppProj
         {
             AddCarToList form = new AddCarToList();
             form.cars = cars;
+            this.Visible = false;
             form.ShowDialog();
         }
 
@@ -86,6 +87,8 @@ namespace WinFormsAppProj
 
         private void SortButton_Click(object sender, EventArgs e)
         {
+            List<Car> carsSorted;
+            carsSorted = cars;
             cars.Sort();
             CarListView.Items.Clear();
             ListViewItem item = null;
@@ -93,6 +96,47 @@ namespace WinFormsAppProj
             {
                 item = new ListViewItem(new string[] { Car.GetType().Name == "LightCar" ? "Легковий автомобіль" : "Вантажівка", Car.Brand, Car.Model, Convert.ToString(Car.ProductionYear), Convert.ToString(Car.Price), Car.Engine.Type, Convert.ToString(Car.Engine.Power), Convert.ToString(Car.Engine.Volume) });
                 CarListView.Items.Add(item);
+            }
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            Car carToDel;
+            if (CarListView.SelectedItems.Count == 1)
+            {
+                carToDel = cars[CarListView.SelectedItems[0].Index];
+                cars.Remove(carToDel);
+                CarListView.Items.Clear();
+                ListViewItem item = null;
+                foreach (var Car in cars)
+                {
+                    item = new ListViewItem(new string[] { Car.GetType().Name == "LightCar" ? "Легковий автомобіль" : "Вантажівка", Car.Brand, Car.Model, Convert.ToString(Car.ProductionYear), Convert.ToString(Car.Price), Car.Engine.Type, Convert.ToString(Car.Engine.Power), Convert.ToString(Car.Engine.Volume) });
+                    CarListView.Items.Add(item);
+                }
+                BinaryFormatter formatter = new BinaryFormatter();
+                using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Cars.bin", FileMode.OpenOrCreate))
+                {
+                    formatter.Serialize(fs, cars);
+                }
+            }
+        }
+
+        private void ExtraInfoButton_Click(object sender, EventArgs e)
+        {
+            if (CarListView.SelectedItems.Count == 1)
+            {
+                Car car;
+                car = cars[CarListView.SelectedItems[0].Index];
+                ConfirmationForm Form = new ConfirmationForm();
+                Form.SearchCar = car;
+                Form.label1.Visible = false;
+                Form.YesButtn.Visible = false;
+                Form.NoButtn.Visible = false;
+                Form.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Виберіть хоча б один автомобіль");
             }
         }
     }

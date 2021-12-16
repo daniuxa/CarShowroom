@@ -16,6 +16,7 @@ namespace WinFormsAppProj
     {
         public Car car { get; set; }
         public List<Car> cars { get; set; }
+        private Dictionary<string, List<string>> brands;
         public AddCarToList()
         {
             InitializeComponent();
@@ -41,13 +42,6 @@ namespace WinFormsAppProj
         private void AddCarToList_Load(object sender, EventArgs e)
         {
             ListViewItem item = null;
-            /*List<IEngine> engines = new List<IEngine>() 
-            {
-                new FstType(),
-                new SecondType(),
-                new TrdType()
-            };*/
-
 
             Dictionary<string, IEngine> engines = new Dictionary<string, IEngine>();
             engines.Add("Перший тип", new FstType());
@@ -78,6 +72,18 @@ namespace WinFormsAppProj
                 item = new ListViewItem(new string[] { engine.Key, engine.Value.Type, Convert.ToString(engine.Value.Power), Convert.ToString(engine.Value.Volume) });
                 EngineListView.Items.Add(item);
             }
+            /*Dictionary<string, List<string>> brands = new Dictionary<string, List<string>>();
+            brands.Add("Mercedez-Benz", new List<string>() { "Actros", "Arocs", "Atego" });
+            brands.Add("Volvo", new List<string>() { "FH16", "FL7", "FM" });
+            brands.Add("Iveco", new List<string>() { "EuroCargo", "Stralis", "Trakker" });
+            brands.Add("MAN", new List<string>() { "TGX", "eTGM", "TGS" });
+            brands.Add("Scania", new List<string>() { "P380", "P280", "Odin S G410" });
+
+            BinaryFormatter formatter = new BinaryFormatter();
+            using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\BrandsTruck.bin", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, brands);
+            }*/
         }
 
         private void TypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,36 +102,21 @@ namespace WinFormsAppProj
             
             if (TypeComboBox.SelectedItem.ToString() == "Легковий автомобіль")
             {
-                Queue<string> brands = new Queue<string>();
-                /* brands.Enqueue("Toyota");
-                 brands.Enqueue("Mercedez-Benz");
-                 brands.Enqueue("BMW");
-                 brands.Enqueue("Honda");
-                 brands.Enqueue("Volkswagen");
-                 brands.Enqueue("Ford");
-                 brands.Enqueue("Hyundai");
-                 brands.Enqueue("Ford");
-                 brands.Enqueue("Audi");
-                 brands.Enqueue("Skoda");
-                 brands.Enqueue("Nissan");
-                 BinaryFormatter formatter = new BinaryFormatter();
-                 using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Brands.bin", FileMode.OpenOrCreate))
-                 {
-                     formatter.Serialize(fs, brands);
-                 }*/
+
                 BinaryFormatter formatter = new BinaryFormatter();
                 using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\BrandsLightCar.bin", FileMode.OpenOrCreate))
                 {
-                    brands = (Queue<string>)formatter.Deserialize(fs);
+                    brands = (Dictionary<string, List<string>>)formatter.Deserialize(fs);
                 }
                 BrandComboBox.Items.Clear();
                 ModelComboBox.Items.Clear();
                 BrandComboBox.Text = "";
                 ModelComboBox.Text = "";
-                while(brands.Count != 0)
+                foreach (var brand in brands)
                 {
-                    BrandComboBox.Items.Add(brands.Dequeue());
+                    BrandComboBox.Items.Add(brand.Key);
                 }
+
                 /*BrandComboBox.Items.Add("Toyota");
                 BrandComboBox.Items.Add("Mercedez-Benz");
                 BrandComboBox.Items.Add("BMW");
@@ -136,6 +127,7 @@ namespace WinFormsAppProj
                 BrandComboBox.Items.Add("Audi");
                 BrandComboBox.Items.Add("Skoda");
                 BrandComboBox.Items.Add("Nissan");*/
+
                 ExtraField1.Text = "Тип кузова: ";
                 ExtraField2.Text = "Макс. швидкість: ";
                 ExtraField1.Visible = true;
@@ -146,29 +138,18 @@ namespace WinFormsAppProj
             }
             else
             {
-                Stack<string> brands = new Stack<string>();
-                /*brands.Push("Scania");
-                brands.Push("MAN");
-                brands.Push("Iveco");
-                brands.Push("Volvo");
-                brands.Push("Mercedez-Benz");
                 BinaryFormatter formatter = new BinaryFormatter();
                 using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\BrandsTruck.bin", FileMode.OpenOrCreate))
                 {
-                    formatter.Serialize(fs, brands);
-                }*/
-                BinaryFormatter formatter = new BinaryFormatter();
-                using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\BrandsTruck.bin", FileMode.OpenOrCreate))
-                {
-                    brands = (Stack<string>)formatter.Deserialize(fs);
+                    brands = (Dictionary<string, List<string>>)formatter.Deserialize(fs);
                 }
                 BrandComboBox.Items.Clear();
                 ModelComboBox.Items.Clear();
                 BrandComboBox.Text = "";
                 ModelComboBox.Text = "";
-                while(brands.Count != 0)
+                foreach (var brand in brands)
                 {
-                    BrandComboBox.Items.Add(brands.Pop());
+                    BrandComboBox.Items.Add(brand.Key);
                 }
                 /*BrandComboBox.Items.Add("Mercedez-Benz");
                 BrandComboBox.Items.Add("Volvo");
@@ -189,125 +170,19 @@ namespace WinFormsAppProj
 
         private void BrandComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (TypeComboBox.SelectedIndex == 0 && BrandComboBox.SelectedIndex == 0)
+            ModelComboBox.Items.Clear();
+            ModelComboBox.Text = "";
+
+            foreach (var brand in brands)
             {
-                ModelComboBox.Items.Clear();
-                ModelComboBox.Text = "";
-                ModelComboBox.Items.Add("Corolla");
-                ModelComboBox.Items.Add("Camry");
-                ModelComboBox.Items.Add("RAV 4");
-            }
-            else if (TypeComboBox.SelectedIndex == 0 && BrandComboBox.SelectedIndex == 1)
-            {
-                ModelComboBox.Items.Clear();
-                ModelComboBox.Text = "";
-                ModelComboBox.Items.Add("A-Class");
-                ModelComboBox.Items.Add("S-Class");
-                ModelComboBox.Items.Add("G-Class");
-            }
-            else if (TypeComboBox.SelectedIndex == 0 && BrandComboBox.SelectedIndex == 2)
-            {
-                ModelComboBox.Items.Clear();
-                ModelComboBox.Text = "";
-                ModelComboBox.Items.Add("5 Series");
-                ModelComboBox.Items.Add("1 Series");
-                ModelComboBox.Items.Add("X5");
-            }
-            else if (TypeComboBox.SelectedIndex == 0 && BrandComboBox.SelectedIndex == 3)
-            {
-                ModelComboBox.Items.Clear();
-                ModelComboBox.Text = "";
-                ModelComboBox.Items.Add("CRV");
-                ModelComboBox.Items.Add("Accord");
-                ModelComboBox.Items.Add("Civic");
-            }
-            else if (TypeComboBox.SelectedIndex == 0 && BrandComboBox.SelectedIndex == 4)
-            {
-                ModelComboBox.Items.Clear();
-                ModelComboBox.Text = "";
-                ModelComboBox.Items.Add("Polo");
-                ModelComboBox.Items.Add("Passat");
-                ModelComboBox.Items.Add("Touareg");
-            }
-            else if (TypeComboBox.SelectedIndex == 0 && BrandComboBox.SelectedIndex == 5)
-            {
-                ModelComboBox.Items.Clear();
-                ModelComboBox.Text = "";
-                ModelComboBox.Items.Add("Focus");
-                ModelComboBox.Items.Add("Kuga");
-                ModelComboBox.Items.Add("Mondeo");
-            }
-            else if (TypeComboBox.SelectedIndex == 0 && BrandComboBox.SelectedIndex == 6)
-            {
-                ModelComboBox.Items.Clear();
-                ModelComboBox.Text = "";
-                ModelComboBox.Items.Add("Sonata");
-                ModelComboBox.Items.Add("Solaris");
-                ModelComboBox.Items.Add("Santa Fe");
-            }
-            else if (TypeComboBox.SelectedIndex == 0 && BrandComboBox.SelectedIndex == 7)
-            {
-                ModelComboBox.Items.Clear();
-                ModelComboBox.Text = "";
-                ModelComboBox.Items.Add("A3");
-                ModelComboBox.Items.Add("A6");
-                ModelComboBox.Items.Add("Q5");
-            }
-            else if (TypeComboBox.SelectedIndex == 0 && BrandComboBox.SelectedIndex == 8)
-            {
-                ModelComboBox.Items.Clear();
-                ModelComboBox.Text = "";
-                ModelComboBox.Items.Add("Octavia");
-                ModelComboBox.Items.Add("Fabia");
-                ModelComboBox.Items.Add("Yeti");
-            }
-            else if (TypeComboBox.SelectedIndex == 0 && BrandComboBox.SelectedIndex == 9)
-            {
-                ModelComboBox.Items.Clear();
-                ModelComboBox.Text = "";
-                ModelComboBox.Items.Add("Almera");
-                ModelComboBox.Items.Add("Qashqai");
-                ModelComboBox.Items.Add("Tilda");
-            }
-            else if (TypeComboBox.SelectedIndex == 1 && BrandComboBox.SelectedIndex == 0)
-            {
-                ModelComboBox.Items.Clear();
-                ModelComboBox.Text = "";
-                ModelComboBox.Items.Add("Actros");
-                ModelComboBox.Items.Add("Arocs");
-                ModelComboBox.Items.Add("Atego");
-            }
-            else if (TypeComboBox.SelectedIndex == 1 && BrandComboBox.SelectedIndex == 1)
-            {
-                ModelComboBox.Items.Clear();
-                ModelComboBox.Text = "";
-                ModelComboBox.Items.Add("FH16");
-                ModelComboBox.Items.Add("FL7");
-                ModelComboBox.Items.Add("FM");
-            }
-            else if (TypeComboBox.SelectedIndex == 1 && BrandComboBox.SelectedIndex == 2)
-            {
-                ModelComboBox.Items.Clear();
-                ModelComboBox.Text = "";
-                ModelComboBox.Items.Add("EuroCargo");
-                ModelComboBox.Items.Add("Stralis");
-                ModelComboBox.Items.Add("Trakker");
-            }
-            else if (TypeComboBox.SelectedIndex == 1 && BrandComboBox.SelectedIndex == 3)
-            {
-                ModelComboBox.Items.Clear();
-                ModelComboBox.Text = "";
-                ModelComboBox.Items.Add("TGX");
-                ModelComboBox.Items.Add("eTGM");
-                ModelComboBox.Items.Add("TGS");
-            }
-            else if (TypeComboBox.SelectedIndex == 1 && BrandComboBox.SelectedIndex == 4)
-            {
-                ModelComboBox.Items.Clear();
-                ModelComboBox.Text = "";
-                ModelComboBox.Items.Add("P380");
-                ModelComboBox.Items.Add("P280");
-                ModelComboBox.Items.Add("Odin S G410");
+                if (brand.Key == BrandComboBox.Text)
+                {
+                    for (int i = 0; i < brand.Value.Count; i++)
+                    {
+                        ModelComboBox.Items.Add(brand.Value[i]);
+                    }
+                    break;
+                }
             }
         }
 

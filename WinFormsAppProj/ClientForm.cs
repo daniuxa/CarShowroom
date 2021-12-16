@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +16,7 @@ namespace WinFormsAppProj
 
     public partial class ClientForm : Form
     {
+        private Dictionary<string, List<string>> brands;
         private LightCar SearchLightCarFrom = null;
         private LightCar SearchLightCarTo = null;
         private Truck SearchTruckFrom = null;
@@ -30,51 +33,41 @@ namespace WinFormsAppProj
 
         private void TypeAuto_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (TypeAuto.SelectedIndex == 0)
+            if (TypeAuto.SelectedItem.ToString() == "Легковий автомобіль")
             {
-                HashSet<string> brands = new HashSet<string>();
-                brands.Add("Toyota");
-                brands.Add("Mercedez-Benz");
-                brands.Add("BMW");
-                brands.Add("Honda");
-                brands.Add("Volkswagen");
-                brands.Add("Ford");
-                brands.Add("Hyundai");
-                brands.Add("Audi");
-                brands.Add("Skoda");
-                brands.Add("Nissan");
+
+                BinaryFormatter formatter = new BinaryFormatter();
+                using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\BrandsLightCar.bin", FileMode.OpenOrCreate))
+                {
+                    brands = (Dictionary<string, List<string>>)formatter.Deserialize(fs);
+                }
                 BrandAuto.Items.Clear();
                 ModelAuto.Items.Clear();
                 BrandAuto.Text = "";
                 ModelAuto.Text = "";
                 foreach (var brand in brands)
                 {
-                    BrandAuto.Items.Add(brand);
+                    BrandAuto.Items.Add(brand.Key);
                 }
-                /*BrandAuto.Items.Add("Toyota");
-                BrandAuto.Items.Add("Mercedez-Benz");
-                BrandAuto.Items.Add("BMW");
-                BrandAuto.Items.Add("Honda");
-                BrandAuto.Items.Add("Volkswagen");
-                BrandAuto.Items.Add("Ford");
-                BrandAuto.Items.Add("Hyundai");
-                BrandAuto.Items.Add("Audi");
-                BrandAuto.Items.Add("Skoda");
-                BrandAuto.Items.Add("Nissan");*/
+
             }
-            else if (TypeAuto.SelectedIndex == 1)
+            else
             {
+                BinaryFormatter formatter = new BinaryFormatter();
+                using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\BrandsTruck.bin", FileMode.OpenOrCreate))
+                {
+                    brands = (Dictionary<string, List<string>>)formatter.Deserialize(fs);
+                }
                 BrandAuto.Items.Clear();
                 ModelAuto.Items.Clear();
                 BrandAuto.Text = "";
                 ModelAuto.Text = "";
-                BrandAuto.Items.Add("Mercedez-Benz");
-                BrandAuto.Items.Add("Volvo");
-                BrandAuto.Items.Add("Iveco");
-                BrandAuto.Items.Add("MAN");
-                BrandAuto.Items.Add("Scania");
+                foreach (var brand in brands)
+                {
+                    BrandAuto.Items.Add(brand.Key);
+                }
             }
-                
+
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -86,125 +79,18 @@ namespace WinFormsAppProj
 
         private void BrandAuto_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (TypeAuto.SelectedIndex == 0 && BrandAuto.SelectedIndex == 0)
+            ModelAuto.Items.Clear();
+            ModelAuto.Text = "";
+            foreach (var brand in brands)
             {
-                ModelAuto.Items.Clear();
-                ModelAuto.Text = "";
-                ModelAuto.Items.Add("Corolla");
-                ModelAuto.Items.Add("Camry");
-                ModelAuto.Items.Add("RAV 4");               
-            }
-            else if (TypeAuto.SelectedIndex == 0 && BrandAuto.SelectedIndex == 1)
-            {
-                ModelAuto.Items.Clear();
-                ModelAuto.Text = "";
-                ModelAuto.Items.Add("A-Class");
-                ModelAuto.Items.Add("S-Class");
-                ModelAuto.Items.Add("G-Class");
-            }
-            else if (TypeAuto.SelectedIndex == 0 && BrandAuto.SelectedIndex == 2)
-            {
-                ModelAuto.Items.Clear();
-                ModelAuto.Text = "";
-                ModelAuto.Items.Add("5 Series");
-                ModelAuto.Items.Add("1 Series");
-                ModelAuto.Items.Add("X5");
-            }
-            else if (TypeAuto.SelectedIndex == 0 && BrandAuto.SelectedIndex == 3)
-            {
-                ModelAuto.Items.Clear();
-                ModelAuto.Text = "";
-                ModelAuto.Items.Add("CRV");
-                ModelAuto.Items.Add("Accord");
-                ModelAuto.Items.Add("Civic");
-            }
-            else if (TypeAuto.SelectedIndex == 0 && BrandAuto.SelectedIndex == 4)
-            {
-                ModelAuto.Items.Clear();
-                ModelAuto.Text = "";
-                ModelAuto.Items.Add("Polo");
-                ModelAuto.Items.Add("Passat");
-                ModelAuto.Items.Add("Touareg");
-            }
-            else if (TypeAuto.SelectedIndex == 0 && BrandAuto.SelectedIndex == 5)
-            {
-                ModelAuto.Items.Clear();
-                ModelAuto.Text = "";
-                ModelAuto.Items.Add("Focus");
-                ModelAuto.Items.Add("Kuga");
-                ModelAuto.Items.Add("Mondeo");
-            }
-            else if (TypeAuto.SelectedIndex == 0 && BrandAuto.SelectedIndex == 6)
-            {
-                ModelAuto.Items.Clear();
-                ModelAuto.Text = "";
-                ModelAuto.Items.Add("Sonata");
-                ModelAuto.Items.Add("Solaris");
-                ModelAuto.Items.Add("Santa Fe");
-            }
-            else if (TypeAuto.SelectedIndex == 0 && BrandAuto.SelectedIndex == 7)
-            {
-                ModelAuto.Items.Clear();
-                ModelAuto.Text = "";
-                ModelAuto.Items.Add("A3");
-                ModelAuto.Items.Add("A6");
-                ModelAuto.Items.Add("Q5");
-            }
-            else if (TypeAuto.SelectedIndex == 0 && BrandAuto.SelectedIndex == 8)
-            {
-                ModelAuto.Items.Clear();
-                ModelAuto.Text = "";
-                ModelAuto.Items.Add("Octavia");
-                ModelAuto.Items.Add("Fabia");
-                ModelAuto.Items.Add("Yeti");
-            }
-            else if (TypeAuto.SelectedIndex == 0 && BrandAuto.SelectedIndex == 9)
-            {
-                ModelAuto.Items.Clear();
-                ModelAuto.Text = "";
-                ModelAuto.Items.Add("Almera");
-                ModelAuto.Items.Add("Qashqai");
-                ModelAuto.Items.Add("Tilda");
-            }
-            else if (TypeAuto.SelectedIndex == 1 && BrandAuto.SelectedIndex == 0)
-            {
-                ModelAuto.Items.Clear();
-                ModelAuto.Text = "";
-                ModelAuto.Items.Add("Actros");
-                ModelAuto.Items.Add("Arocs");
-                ModelAuto.Items.Add("Atego");
-            }
-            else if (TypeAuto.SelectedIndex == 1 && BrandAuto.SelectedIndex == 1)
-            {
-                ModelAuto.Items.Clear();
-                ModelAuto.Text = "";
-                ModelAuto.Items.Add("FH16");
-                ModelAuto.Items.Add("FL7");
-                ModelAuto.Items.Add("FM");
-            }
-            else if (TypeAuto.SelectedIndex == 1 && BrandAuto.SelectedIndex == 2)
-            {
-                ModelAuto.Items.Clear();
-                ModelAuto.Text = "";
-                ModelAuto.Items.Add("EuroCargo");
-                ModelAuto.Items.Add("Stralis");
-                ModelAuto.Items.Add("Trakker");
-            }
-            else if (TypeAuto.SelectedIndex == 1 && BrandAuto.SelectedIndex == 3)
-            {
-                ModelAuto.Items.Clear();
-                ModelAuto.Text = "";
-                ModelAuto.Items.Add("TGX");
-                ModelAuto.Items.Add("eTGM");
-                ModelAuto.Items.Add("TGS");
-            }
-            else if (TypeAuto.SelectedIndex == 1 && BrandAuto.SelectedIndex == 4)
-            {
-                ModelAuto.Items.Clear();
-                ModelAuto.Text = "";
-                ModelAuto.Items.Add("P380");
-                ModelAuto.Items.Add("P280");
-                ModelAuto.Items.Add("Odin S G410");
+                if (brand.Key == BrandAuto.Text)
+                {
+                    for (int i = 0; i < brand.Value.Count; i++)
+                    {
+                        ModelAuto.Items.Add(brand.Value[i]);
+                    }
+                    break;
+                }
             }
         }
 
@@ -386,7 +272,7 @@ namespace WinFormsAppProj
                     CarList Form = new CarList();
                     Form.carFrom = SearchLightCarFrom;
                     Form.carTo = SearchLightCarTo;
-                    this.Close();
+                    this.Visible = false;
                     Form.ShowDialog();
                 }
                 else
@@ -394,7 +280,7 @@ namespace WinFormsAppProj
                     CarList Form = new CarList();
                     Form.carFrom = SearchTruckFrom;
                     Form.carTo = SearchTruckTo;
-                    this.Close();
+                    this.Visible = false;
                     Form.ShowDialog();
                 }
             }

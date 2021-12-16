@@ -144,9 +144,9 @@ namespace WinFormsAppProj
             // SelectButtn
             // 
             this.SelectButtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SelectButtn.Location = new System.Drawing.Point(553, 402);
+            this.SelectButtn.Location = new System.Drawing.Point(543, 402);
             this.SelectButtn.Name = "SelectButtn";
-            this.SelectButtn.Size = new System.Drawing.Size(211, 36);
+            this.SelectButtn.Size = new System.Drawing.Size(221, 36);
             this.SelectButtn.TabIndex = 18;
             this.SelectButtn.Text = "Вибір авто";
             this.SelectButtn.UseVisualStyleBackColor = true;

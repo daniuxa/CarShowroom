@@ -38,6 +38,8 @@ namespace WinFormsAppProj
             this.PhoneNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.VisitDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ViewCar = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DetailInfoButton = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
             this.TopBorder.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,12 +122,34 @@ namespace WinFormsAppProj
             this.ViewCar.Text = "Бажане авто";
             this.ViewCar.Width = 141;
             // 
+            // DetailInfoButton
+            // 
+            this.DetailInfoButton.Location = new System.Drawing.Point(533, 385);
+            this.DetailInfoButton.Name = "DetailInfoButton";
+            this.DetailInfoButton.Size = new System.Drawing.Size(255, 53);
+            this.DetailInfoButton.TabIndex = 20;
+            this.DetailInfoButton.Text = "Детальна інформація про авто";
+            this.DetailInfoButton.UseVisualStyleBackColor = true;
+            this.DetailInfoButton.Click += new System.EventHandler(this.DetailInfoButton_Click);
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(12, 385);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(255, 53);
+            this.DeleteButton.TabIndex = 21;
+            this.DeleteButton.Text = "Видалити клієнта";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
             // ListClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DeleteButton);
+            this.Controls.Add(this.DetailInfoButton);
             this.Controls.Add(this.ClientListView);
             this.Controls.Add(this.TopBorder);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -148,5 +172,7 @@ namespace WinFormsAppProj
         private System.Windows.Forms.ColumnHeader PhoneNumber;
         private System.Windows.Forms.ColumnHeader VisitDate;
         private System.Windows.Forms.ColumnHeader ViewCar;
+        private System.Windows.Forms.Button DetailInfoButton;
+        private System.Windows.Forms.Button DeleteButton;
     }
 }

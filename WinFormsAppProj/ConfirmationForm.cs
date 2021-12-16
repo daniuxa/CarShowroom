@@ -83,7 +83,7 @@ namespace WinFormsAppProj
         {
             ClientDataEntry Form = new ClientDataEntry();
             Form.car = SearchCar;
-            this.Close();
+            this.Visible = false;
             Form.ShowDialog();
         }
 

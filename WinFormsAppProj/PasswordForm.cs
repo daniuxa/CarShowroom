@@ -21,7 +21,7 @@ namespace WinFormsAppProj
         {
             if (PasswordBox.Text == "1111")
             {
-                this.Close();
+                this.Visible = false;
                 AdminForm NewForm = new AdminForm();
                 NewForm.ShowDialog();
             }

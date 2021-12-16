@@ -69,7 +69,7 @@ namespace WinFormsAppProj
                 Form.person = сustomer;
                 /*BoughtCar += SendMessage;*/
                 BoughtCar?.Invoke(сustomer, new BoughtCarEventArg(сustomer.ViewCar, DateTime.Now));
-                this.Close();
+                this.Visible = false;
                 Form.ShowDialog();
             }
             else

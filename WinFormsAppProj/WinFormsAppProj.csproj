@@ -179,8 +179,9 @@
       <DependentUpon>SuccessfulOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Files\Cars.bin" />
-    <EmbeddedResource Include="Files\Customers.bin" />
     <None Include="Files\BrandsLightCar.bin" />
+    <None Include="Files\BrandsTruck.bin" />
+    <None Include="Files\Customers.bin" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

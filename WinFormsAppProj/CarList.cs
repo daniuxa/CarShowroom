@@ -228,12 +228,18 @@ namespace WinFormsAppProj
                 ConfirmationForm Form = new ConfirmationForm();
                 car = carsFiltred[CarListView.SelectedItems[0].Index];
                 Form.SearchCar = car;
+                this.Visible = false;
                 Form.ShowDialog();
             }
             else
             {
                 MessageBox.Show("Перевірте ввід даних");
             }
+        }
+
+        private void ExtraInfoButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
