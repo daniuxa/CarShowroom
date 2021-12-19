@@ -14,11 +14,14 @@ namespace WinFormsAppProj
 {
     public partial class SuccessfulOrder : Form
     {
+        private InAndOutputLists<Сustomer> inAndOutputLists;
         public Person person { get; set; }
         Сustomer сustomer;
+
         public SuccessfulOrder()
         {
             InitializeComponent();
+            inAndOutputLists = new InAndOutputLists<Сustomer>(@"C:\Users\saliv\source\repos\WinFormsAppProj\WinFormsAppProj\Files\Customers.bin");
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -53,8 +56,32 @@ namespace WinFormsAppProj
 
         private void OKButtn_Click(object sender, EventArgs e)
         {
-            List<Сustomer> сustomers;
-            BinaryFormatter formatter = new BinaryFormatter();
+            List<Сustomer> сustomers = null;
+
+            try
+            {
+                сustomers = inAndOutputLists.ReadingFromFile();
+            }
+            catch (FileException ex)
+            {
+                MessageBox.Show($"Помилка: {ex.Message}\tШлях до файлу: {ex.FilePath}");
+            }
+
+            /*if (сustomers == null)
+                сustomers = new List<Сustomer>();*/
+
+            сustomers.Add(сustomer);
+
+            try
+            {
+                inAndOutputLists.WritingToFile(сustomers);
+            }
+            catch (FileException ex)
+            {
+                MessageBox.Show($"Помилка: {ex.Message}\tШлях до файлу: {ex.FilePath}");
+            }
+
+            /*BinaryFormatter formatter = new BinaryFormatter();
             var fi = new FileInfo("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin");
             if (fi.Length == 0)
                 сustomers = new List<Сustomer>();
@@ -69,7 +96,7 @@ namespace WinFormsAppProj
             using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin", FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, сustomers);
-            }
+            }*/
             /*try
             {
                 using (BinaryWriter writer = new BinaryWriter(File.Open("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin", FileMode.Append)))

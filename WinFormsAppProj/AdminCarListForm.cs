@@ -15,12 +15,12 @@ namespace WinFormsAppProj
     public partial class AdminCarListForm : Form
     {
         List<Car> cars;
-        private ReadingLists<Car> readingLists;
+        private InAndOutputLists<Car> inAndOutputLists;
         public AdminCarListForm()
         {
             InitializeComponent();
-            readingLists = new ReadingLists<Car>();
-            readingLists.ChangeFilePath("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Cars.bin");
+            inAndOutputLists = new InAndOutputLists<Car>();
+            inAndOutputLists.ChangeFilePath("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Cars.bin");
         }
 
         private void CloseButtn_Click(object sender, EventArgs e)
@@ -49,11 +49,20 @@ namespace WinFormsAppProj
 
         private void AdminCarListForm_Load(object sender, EventArgs e)
         {
-            AddCarToList(readingLists.FromFile);
+            AddCarToList(inAndOutputLists.ReadingFromFile);
         }
         private void AddCarToList(EntryList<Car> readingListCar)
         {
-            cars = readingListCar();
+            try
+            {
+                cars = readingListCar();
+            }
+            catch (FileException ex)
+            {
+                MessageBox.Show($"Помилка: {ex.Message}\tШлях до файлу: {ex.FilePath}");
+                throw;
+            }
+  
             ListViewItem item = null;
             foreach (var Car in cars)
             {
@@ -113,10 +122,13 @@ namespace WinFormsAppProj
                     item = new ListViewItem(new string[] { Car.GetType().Name == "LightCar" ? "Легковий автомобіль" : "Вантажівка", Car.Brand, Car.Model, Convert.ToString(Car.ProductionYear), Convert.ToString(Car.Price), Car.Engine.Type, Convert.ToString(Car.Engine.Power), Convert.ToString(Car.Engine.Volume) });
                     CarListView.Items.Add(item);
                 }
-                BinaryFormatter formatter = new BinaryFormatter();
-                using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Cars.bin", FileMode.OpenOrCreate))
+                try
                 {
-                    formatter.Serialize(fs, cars);
+                    inAndOutputLists.WritingToFile(cars);
+                }
+                catch (FileException ex)
+                {
+                    MessageBox.Show($"Помилка: {ex.Message}\tШлях до файлу: {ex.FilePath}");
                 }
             }
         }

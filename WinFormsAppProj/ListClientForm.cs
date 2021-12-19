@@ -15,11 +15,11 @@ namespace WinFormsAppProj
     public partial class ListClientForm : Form
     {
         private List<Сustomer> сustomers;
-        private ReadingLists<Сustomer> readingLists;
+        private InAndOutputLists<Сustomer> readingLists;
         public ListClientForm()
         {
             InitializeComponent();
-            readingLists = new ReadingLists<Сustomer>();
+            readingLists = new InAndOutputLists<Сustomer>();
             readingLists.ChangeFilePath("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin");
         }
 
@@ -50,12 +50,19 @@ namespace WinFormsAppProj
 
         private void ListClientForm_Load(object sender, EventArgs e)
         {
-            AddClientToList(readingLists.FromFile);
+            AddClientToList(readingLists.ReadingFromFile);
         }
         private void AddClientToList(EntryList<Сustomer> readingListCustomer)
         {
             SortedList<string, Сustomer> SortedCustomers = new SortedList<string, Сustomer>();
-            сustomers = readingListCustomer();
+            try
+            {
+                сustomers = readingListCustomer();
+            }
+            catch (FileException ex)
+            {
+                MessageBox.Show($"Помилка: {ex.Message}\tШлях до файлу: {ex.FilePath}");             
+            }
             /*for (int i = 0; i < сustomers.Count; i++)
             {
                 SortedCustomers.Add(сustomers[i].Name + " " + сustomers[i].Surname, сustomers[i]);
@@ -118,10 +125,14 @@ namespace WinFormsAppProj
                     item = new ListViewItem(new string[] { customer.Name, customer.Surname, customer.Sex, customer.PhoneNumber, customer.VisitDate.ToString("d"), customer.ViewCar.Brand + " " + customer.ViewCar.Model + " " + customer.ViewCar.ProductionYear.ToString() });
                     ClientListView.Items.Add(item);
                 }
-                BinaryFormatter formatter = new BinaryFormatter();
-                using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin", FileMode.OpenOrCreate))
+                try
                 {
-                    formatter.Serialize(fs, сustomers);
+                    readingLists.WritingToFile(сustomers);
+                }
+                catch (FileException ex)
+                {
+                    MessageBox.Show($"Помилка: {ex.Message}\tШлях до файлу: {ex.FilePath}");
+                    throw;
                 }
             }
         }

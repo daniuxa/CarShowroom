@@ -14,12 +14,14 @@ namespace WinFormsAppProj
 {
     public partial class AddCarToList : Form
     {
+        private InAndOutputLists<Car> inAndOutputLists;
         public Car car { get; set; }
         public List<Car> cars { get; set; }
         private Dictionary<string, List<string>> brands;
         public AddCarToList()
         {
             InitializeComponent();
+            inAndOutputLists = new InAndOutputLists<Car>();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -102,7 +104,6 @@ namespace WinFormsAppProj
             
             if (TypeComboBox.SelectedItem.ToString() == "Легковий автомобіль")
             {
-
                 BinaryFormatter formatter = new BinaryFormatter();
                 using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\BrandsLightCar.bin", FileMode.OpenOrCreate))
                 {
@@ -332,10 +333,14 @@ namespace WinFormsAppProj
                 return;
             }
             cars.Add(car);
-            BinaryFormatter formatter = new BinaryFormatter();
-            using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Cars.bin", FileMode.OpenOrCreate))
+            inAndOutputLists.ChangeFilePath(@"C:\Users\saliv\source\repos\WinFormsAppProj\WinFormsAppProj\Files\Cars.bin");
+            try
             {
-                formatter.Serialize(fs, cars);
+                inAndOutputLists.WritingToFile(cars);
+            }
+            catch (FileException ex)
+            {
+                MessageBox.Show($"Помилка: {ex.Message}\tШлях до файлу: {ex.FilePath}");
             }
             MessageBox.Show("Успішно додано");
             this.Close();

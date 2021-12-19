@@ -16,7 +16,7 @@ namespace WinFormsAppProj
     public partial class CarList : Form
     {
         private List<Car> carsFiltred;
-        private ReadingLists<Car> readingLists;
+        private InAndOutputLists<Car> readingLists;
 
         public Car carFrom { get; set; }
         public Car carTo { get; set; }
@@ -25,7 +25,7 @@ namespace WinFormsAppProj
         {
             InitializeComponent();
             carsFiltred = new List<Car>();
-            readingLists = new ReadingLists<Car>();
+            readingLists = new InAndOutputLists<Car>();
             readingLists.ChangeFilePath("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Cars.bin");
         }
      
@@ -69,7 +69,7 @@ namespace WinFormsAppProj
         }
         private void CarList_Load(object sender, EventArgs e)
         {
-            carsFiltred = FiltringCarList(readingLists.FromFile);
+            carsFiltred = FiltringCarList(readingLists.ReadingFromFile);
             
             if (carsFiltred.Count != 0)
             {
@@ -85,8 +85,17 @@ namespace WinFormsAppProj
 
         private List<Car> FiltringCarList(EntryList<Car> entryCarList)
         {
+            List<Car> cars = null;
             List<Car> carsFiltred = new List<Car>();
-            List<Car> cars = entryCarList();
+            try
+            {
+                cars = entryCarList();
+            }
+            catch (FileException ex)
+            {
+                MessageBox.Show($"Помилка: {ex.Message}\tШлях до файлу: {ex.FilePath}");
+                throw;
+            }
             if (carTo.Brand != "" && carTo.Model != "")
             {
                 foreach (var car in cars)

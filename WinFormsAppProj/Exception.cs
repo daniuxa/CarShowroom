@@ -170,5 +170,13 @@ namespace WinFormsAppProj
             Value = value;
         }*/
     }
+    class FileException : Exception
+    {
+        public string FilePath { get; }
+        public FileException(string msg, string value) : base(msg)
+        {
+            FilePath = value;
+        }
+    }
 }
 
