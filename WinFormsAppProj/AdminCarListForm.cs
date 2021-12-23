@@ -15,11 +15,11 @@ namespace WinFormsAppProj
     public partial class AdminCarListForm : Form
     {
         List<Car> cars;
-        private InAndOutputLists<Car> inAndOutputLists;
+        private InAndOutputLists<List<Car>> inAndOutputLists;
         public AdminCarListForm()
         {
             InitializeComponent();
-            inAndOutputLists = new InAndOutputLists<Car>();
+            inAndOutputLists = new InAndOutputLists<List<Car>>();
             inAndOutputLists.ChangeFilePath("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Cars.bin");
         }
 

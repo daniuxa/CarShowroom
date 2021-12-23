@@ -14,14 +14,14 @@ namespace WinFormsAppProj
 {
     public partial class SuccessfulOrder : Form
     {
-        private InAndOutputLists<Сustomer> inAndOutputLists;
+        private InAndOutputLists<List<Сustomer>> inAndOutputLists;
         public Person person { get; set; }
         Сustomer сustomer;
 
         public SuccessfulOrder()
         {
             InitializeComponent();
-            inAndOutputLists = new InAndOutputLists<Сustomer>(@"C:\Users\saliv\source\repos\WinFormsAppProj\WinFormsAppProj\Files\Customers.bin");
+            inAndOutputLists = new InAndOutputLists<List<Сustomer>>(@"C:\Users\saliv\source\repos\WinFormsAppProj\WinFormsAppProj\Files\Customers.bin");
         }
 
         private void CloseButton_Click(object sender, EventArgs e)

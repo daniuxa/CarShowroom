@@ -25,7 +25,7 @@ namespace WinFormsAppProj
             this.FilePath = FilePath;
         }
 
-        public List<T> ReadingFromFile()
+        public T ReadingFromFile()
         {
             if (FilePath == "")
             {
@@ -45,15 +45,15 @@ namespace WinFormsAppProj
                 throw new FileException("Файл пустий", FilePath);
             }
 
-            List<T> list = new List<T>();
+            T list;
             BinaryFormatter formatter = new BinaryFormatter();
             using (FileStream fs = new FileStream(FilePath, FileMode.OpenOrCreate))
             {
-                list = (List<T>)formatter.Deserialize(fs);
+                list = (T)formatter.Deserialize(fs);
             }
             return list;
         }
-        public /*bool*/void WritingToFile(List<T> list)
+        public /*bool*/void WritingToFile(T list)
         {
             if (FilePath == "")
             {
@@ -74,11 +74,11 @@ namespace WinFormsAppProj
             /*return true;*/
         }
 
-        public List<T> ReadingFromDB()
+        public T ReadingFromDB()
         {
-            return null;
+            return default(T);
         }
-        public bool WritingToDB(List<T> list)
+        public bool WritingToDB(T list)
         {
             return false;
         }

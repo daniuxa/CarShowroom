@@ -14,14 +14,14 @@ namespace WinFormsAppProj
 {
     public partial class AddCarToList : Form
     {
-        private InAndOutputLists<Car> inAndOutputLists;
+        private InAndOutputLists<List<Car>> inAndOutputLists;
         public Car car { get; set; }
         public List<Car> cars { get; set; }
         private Dictionary<string, List<string>> brands;
         public AddCarToList()
         {
             InitializeComponent();
-            inAndOutputLists = new InAndOutputLists<Car>();
+            inAndOutputLists = new InAndOutputLists<List<Car>>();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -101,14 +101,14 @@ namespace WinFormsAppProj
                 }*//*
 
             }*/
+
+            InAndOutputLists<Dictionary<string, List<string>>> inAndOutputDictionary = new InAndOutputLists<Dictionary<string, List<string>>>();
             
             if (TypeComboBox.SelectedItem.ToString() == "Легковий автомобіль")
             {
-                BinaryFormatter formatter = new BinaryFormatter();
-                using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\BrandsLightCar.bin", FileMode.OpenOrCreate))
-                {
-                    brands = (Dictionary<string, List<string>>)formatter.Deserialize(fs);
-                }
+                inAndOutputDictionary.ChangeFilePath("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\BrandsLightCar.bin");
+                brands = inAndOutputDictionary.ReadingFromFile();
+                
                 BrandComboBox.Items.Clear();
                 ModelComboBox.Items.Clear();
                 BrandComboBox.Text = "";
@@ -139,11 +139,8 @@ namespace WinFormsAppProj
             }
             else
             {
-                BinaryFormatter formatter = new BinaryFormatter();
-                using (FileStream fs = new FileStream("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\BrandsTruck.bin", FileMode.OpenOrCreate))
-                {
-                    brands = (Dictionary<string, List<string>>)formatter.Deserialize(fs);
-                }
+                inAndOutputDictionary.ChangeFilePath("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\BrandsTruck.bin");
+                brands = inAndOutputDictionary.ReadingFromFile();
                 BrandComboBox.Items.Clear();
                 ModelComboBox.Items.Clear();
                 BrandComboBox.Text = "";

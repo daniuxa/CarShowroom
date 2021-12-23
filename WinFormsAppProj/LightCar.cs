@@ -18,7 +18,9 @@ namespace WinFormsAppProj
             }
             set
             {
-                if (value == "Седан" || value == "Кросовер" || value == "Хетчбек")
+                InAndOutputLists<List<string>> inAndOutputLists = new InAndOutputLists<List<string>>(@"C:\Users\saliv\source\repos\WinFormsAppProj\WinFormsAppProj\Files\BodyType.bin");
+                List<string> BodyTypeList = inAndOutputLists.ReadingFromFile();
+                if (BodyTypeList.Contains(value) == true)
                 {
                     bodyType = value;
                 }

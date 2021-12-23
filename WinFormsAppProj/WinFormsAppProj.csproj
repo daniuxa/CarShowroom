@@ -125,7 +125,6 @@
       <DependentUpon>SuccessfulOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="Truck.cs" />
-    <Compile Include="Worker.cs" />
     <EmbeddedResource Include="AddCarToList.resx">
       <DependentUpon>AddCarToList.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,6 +169,7 @@
       <DependentUpon>SuccessfulOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Files\Cars.bin" />
+    <None Include="Files\BodyType.bin" />
     <None Include="Files\BrandsLightCar.bin" />
     <None Include="Files\BrandsTruck.bin" />
     <None Include="Files\Customers.bin" />

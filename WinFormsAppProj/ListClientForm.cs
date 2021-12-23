@@ -15,11 +15,11 @@ namespace WinFormsAppProj
     public partial class ListClientForm : Form
     {
         private List<Сustomer> сustomers;
-        private InAndOutputLists<Сustomer> readingLists;
+        private InAndOutputLists<List<Сustomer>> readingLists;
         public ListClientForm()
         {
             InitializeComponent();
-            readingLists = new InAndOutputLists<Сustomer>();
+            readingLists = new InAndOutputLists<List<Сustomer>>();
             readingLists.ChangeFilePath("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Customers.bin");
         }
 

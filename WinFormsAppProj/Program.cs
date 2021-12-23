@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace WinFormsAppProj
 {
-    /*static class Program
+    static class Program
     {
         /// <summary>
         /// Главная точка входа для приложения.
@@ -14,11 +14,19 @@ namespace WinFormsAppProj
         [STAThread]
         static void Main()
         {
+            /*InAndOutputLists<string> inAndOutputLists = new InAndOutputLists<string>(@"C:\Users\saliv\source\repos\WinFormsAppProj\WinFormsAppProj\Files\BodyType.bin");
+            List<string> BodyTypeList = new List<string>()
+            {
+                "Седан",
+                "Кросовер",
+                "Хетчбек"
+            };
+            inAndOutputLists.WritingToFile(BodyTypeList);*/
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
-    }*/
+    }
     /*
     Клас автомобіль:
      нащадки - типи автомобілів(легковий автомобіль, вантажівка)
@@ -106,14 +114,15 @@ namespace WinFormsAppProj
              _WorkingPos = WorkingPos;
          }
      }*/
-    class Program
+    /*class Program
     {
         static void Main(string[] args)
         {
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
             Application.Run(new MainForm());
         }
-    }
+    }*/
 }

@@ -16,7 +16,7 @@ namespace WinFormsAppProj
     public partial class CarList : Form
     {
         private List<Car> carsFiltred;
-        private InAndOutputLists<Car> readingLists;
+        private InAndOutputLists<List<Car>> readingLists;
 
         public Car carFrom { get; set; }
         public Car carTo { get; set; }
@@ -25,7 +25,7 @@ namespace WinFormsAppProj
         {
             InitializeComponent();
             carsFiltred = new List<Car>();
-            readingLists = new InAndOutputLists<Car>();
+            readingLists = new InAndOutputLists<List<Car>>();
             readingLists.ChangeFilePath("C:\\Users\\saliv\\source\\repos\\WinFormsAppProj\\WinFormsAppProj\\Files\\Cars.bin");
         }
      
@@ -94,7 +94,7 @@ namespace WinFormsAppProj
             catch (FileException ex)
             {
                 MessageBox.Show($"Помилка: {ex.Message}\tШлях до файлу: {ex.FilePath}");
-                throw;
+                return null;
             }
             if (carTo.Brand != "" && carTo.Model != "")
             {
